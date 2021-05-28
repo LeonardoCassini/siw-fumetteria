@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.persona})"></head>
+<body>
+	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
+	  <section>
+      Nessuna nuova buona nuova
+      <img class="mini"src="/immagini/pianto.gif" alt="piangere fortissimo">
+    </section>
+</body>
+<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
+</html>
