@@ -10,6 +10,10 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
 import static it.uniroma3.siw.spring.model.Credenziali.ADMIN_ROLE;
 
 @Configuration
@@ -58,7 +62,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 				// ottiene email, password e un boolean flag per specificare se l'utente è attivo o meno
 				.usersByUsernameQuery("SELECT email, password, 1 as enabled FROM credenziali WHERE email=?");
 	}
-	
+	//Metodo per criptare de decriptare la password
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
