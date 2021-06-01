@@ -16,6 +16,7 @@ public class Volume
 	private int copie;
 	private LocalDate pubblicazione;
 	private boolean ristampa;
+	
 	public int getPagine() {
 		return pagine;
 	}

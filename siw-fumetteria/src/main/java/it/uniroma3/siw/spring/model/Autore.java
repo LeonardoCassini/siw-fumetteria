@@ -15,6 +15,7 @@ public class Autore
 	private LocalDate dataNascita;
 	private LocalDate dataMorte;
 	private String nazionalita;
+	
 	public Long getId() {
 		return id;
 	}
@@ -51,5 +52,5 @@ public class Autore
 	public void setNazionalita(String nazionalita) {
 		this.nazionalita = nazionalita;
 	}
-	
+
 }

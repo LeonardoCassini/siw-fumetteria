@@ -12,10 +12,12 @@ public class Cliente
 	private Long id;
 	private String nome;
 	private String cognome;
+	private String email;
 	private LocalDate dataNascita;
 	private String indirizzo;
 	private String password;
 	private String pagamento;
+	
 	public Long getId() {
 		return id;
 	}
@@ -57,6 +59,12 @@ public class Cliente
 	}
 	public void setPagamento(String pagamento) {
 		this.pagamento = pagamento;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	
