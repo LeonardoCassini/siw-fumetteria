@@ -8,33 +8,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.uniroma3.siw.spring.model.Cliente;
-import it.uniroma3.siw.spring.repository.ClienteRepository;
+import it.uniroma3.siw.spring.model.Utente;
+import it.uniroma3.siw.spring.repository.UtenteRepository;
 
 @Service
-public class ClienteService {
+public class UtenteService 
+{
 
 	@Autowired
-	protected ClienteRepository clienteRepository;
+	protected UtenteRepository clienteRepository;
 	
 	//Metodo per recuperare un cliente dal db
 	@Transactional
-	public Cliente getCliente(Long id) {
-		Optional<Cliente> result = this.clienteRepository.findById(id);
+	public Utente getCliente(Long id) 
+	{
+		Optional<Utente> result = this.clienteRepository.findById(id);
 		return result.orElse(null);
 	}
 	
 	//Metodo per salvare un cliente dal db
-	public Cliente saveCliente(Cliente cliente) {
+	@Transactional
+	public Utente saveCliente(Utente cliente) 
+	{
 		return this.clienteRepository.save(cliente);
 	}
 	
 	//Metodo per recuperare tutti i clienti dal db
 	@Transactional
-	public List<Cliente> getAllClienti(){
-		List<Cliente> result = new ArrayList<Cliente>();
-		Iterable<Cliente> it = this.clienteRepository.findAll();
-		for(Cliente cliente : it)
+	public List<Utente> getAllClienti()
+	{
+		List<Utente> result = new ArrayList<Utente>();
+		Iterable<Utente> it = this.clienteRepository.findAll();
+		for(Utente cliente : it)
 			result.add(cliente);
 		return result;
 	}

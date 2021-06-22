@@ -17,13 +17,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import static it.uniroma3.siw.spring.model.Credenziali.ADMIN_ROLE;
 
 @Configuration
-public class AuthConfiguration extends WebSecurityConfigurerAdapter{
+public class AuthConfiguration extends WebSecurityConfigurerAdapter
+{
 	
 	@Autowired
 	DataSource datasource;
 	
 	@Override
-	protected void configure(HttpSecurity http) throws Exception{
+	protected void configure(HttpSecurity http) throws Exception
+	{
 		http
 			// definiamo chi può accedere
 			.authorizeRequests()
@@ -53,7 +55,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 	}
 	
 	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception{
+	public void configure(AuthenticationManagerBuilder auth) throws Exception
+	{
 		auth.jdbcAuthentication()
 				// usa l'autowired datasource per accedere alle credenziali salvate
 				.dataSource(this.datasource)
@@ -64,7 +67,8 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter{
 	}
 	//Metodo per criptare de decriptare la password
 	@Bean
-	PasswordEncoder passwordEncoder() {
+	PasswordEncoder passwordEncoder() 
+	{
 		return new BCryptPasswordEncoder();
 	}
 }

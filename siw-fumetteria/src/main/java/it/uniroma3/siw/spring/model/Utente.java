@@ -4,20 +4,24 @@ import javax.persistence.*;
 import java.time.*;
 import java.util.List;
 
+
 @Entity
-public class Autore 
+public class Utente 
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
 	private String cognome;
+	private String email;
 	private LocalDate dataNascita;
-	private LocalDate dataMorte;
-	private String nazionalita;
-	private int struttura;
-	@OneToMany(mappedBy="autore")
-	private List<Opera> opere;
+	private String indirizzo;
+	private String password;
+	private String pagamento;
+	@OneToMany(mappedBy="cliente")
+	private List<Ordine> ordini;
+	@OneToOne(mappedBy="utente")
+	private Credenziali credenziali;
 	
 	public Long getId() 
 	{
@@ -51,39 +55,38 @@ public class Autore
 	{
 		this.dataNascita = dataNascita;
 	}
-	public LocalDate getDataMorte() 
+	public String getIndirizzo() 
 	{
-		return dataMorte;
+		return indirizzo;
 	}
-	public void setDataMorte(LocalDate dataMorte) 
+	public void setIndirizzo(String indirizzo) 
 	{
-		this.dataMorte = dataMorte;
+		this.indirizzo = indirizzo;
 	}
-	public String getNazionalita() 
+	public String getPassword() 
 	{
-		return nazionalita;
+		return password;
 	}
-	public void setNazionalita(String nazionalita) 
+	public void setPassword(String password) 
 	{
-		this.nazionalita = nazionalita;
+		this.password = password;
 	}
-	public int getStruttura() 
+	public String getPagamento() 
 	{
-		return struttura;
+		return pagamento;
 	}
-	public void setStruttura(int struttura) 
+	public void setPagamento(String pagamento) 
 	{
-		this.struttura = struttura;
+		this.pagamento = pagamento;
 	}
-	public List<Opera> getOpere() 
+	public String getEmail() 
 	{
-		return opere;
+		return email;
 	}
-	public void setOpere(List<Opera> opere) 
+	public void setEmail(String email) 
 	{
-		this.opere = opere;
+		this.email = email;
 	}
 	
 	
-
 }
