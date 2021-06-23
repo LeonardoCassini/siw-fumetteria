@@ -9,6 +9,7 @@ public class Volume
 {
 	
 	private int pagine;
+	@Id
 	private String isbn;
 	private int numVolume;
 	private String sinossi;

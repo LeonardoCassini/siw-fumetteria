@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/base.html :: headerfiles(title=#{pageTitle.persona})"></head>
+	th:replace="fragments/strutturaBase.html :: headerfiles(title)">
+</head>
 <body>
-	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
+	<header th:replace="fragments/strutturaBase.html :: intestazione">
+	</header>
+	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
+	</nav>
 	<h1>
 		<strong>Super fumettissimi in offerta solo ora</strong> SOLO ORA SE
 		COMPRI UNA BISTECCA HAI IN OMAGGIO IL FUMETTO DEL DENTISTA
 	</h1>
+	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
-<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </html>

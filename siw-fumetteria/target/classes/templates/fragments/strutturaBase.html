@@ -1,55 +1,35 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles(title)">
-<meta charset="utf-8">
-<link th:href="@{/css/supaStyle.css}" rel="stylesheet">
-<title th:text="${title}"></title>
+	<meta charset="UTF-8"/>
+	<link th:href="@{/css/supaStyle.css}" rel="stylesheet">
+	<title th:text="${title}"></title>
 </head>
 <body>
 	<a name="inizio"></a>
 	<header th:fragment="intestazione">
-		<a href="homepage.html"> 
-		<img src="/immagini/logo.png" alt="Comics Space">
+		<a th:href="@{/}"> <img th:src="@{/images/logo.png}">
 		</a>
 	</header>
 	<nav th:fragment="barraNavigazione">
 		<ul>
-        <li><a href="homepage.html">Home</a></li>
-        <li><a href="generi.html">Generi</a></li>
-        <li><a href="autori.html">Autori</a></li>
-        <li><a href="opere.html">Opere</a></li>
-        <li><a href="news.html">News</a></li>
-        <li>
-          <a href="carrello.html"> <img class="carrello" src="/immagini/carrello.png" alt="carrello"> </a>
-        </li>
-        <li class="posDestra"><input type="search" name="ricerca" placeholder="Cerca..."/> <input type="submit" value="cerca"/></li>
-      </ul>
+			<li><a th:href="@{/}">Home</a></li>
+			<li><a th:href="@{generi}">Generi</a></li>
+			<li><a th:href="@{autori}">Autori</a></li>
+			<li><a th:href="@{opere}">Opere</a></li>
+			<li><a th:href="@{news}">News</a></li>
+			<li><a th:href="@{carrello}"> 
+			<img class="carrello" src="/images/carrello.png" alt="carrello">
+			</a></li>
+			<li class="posDestra"><input type="search" name="ricerca"
+				placeholder="Cerca..." /> <input type="submit" value="cerca" /></li>
+		</ul>
 	</nav>
-	<p>Go to the next page to see fragments in action</p>
-	<aside>
-		<div>This is a sidebar</div>
-	</aside>
 	<div id="tornasu">
-	  <a href="#inizio">
-	      <img src= "/immagini/froccia2.png" class="tornasu" width="40px" height="40px">
-	   </a>
+		<a th:href="#inizio"> <img src="/images/froccia2.png" class="tornasu"
+			width="40px" height="40px">
+		</a>
 	</div>
-
-	<footer th:fragment="fondo"></footer>
-	
-	  <script>
-	   window.addEventListener ("scroll",function()
-     {
-	      if (window.pageYOffset>300)
-        {
-	         document.getElementById ("tornasu").style.display= "block";
-	      }
-	         else if (window.pageYOffset<300)
-           {
-	            document.getElementById ("tornasu").style.display= "none";
-	         }
-	            val[0].innerHTML= "PageYOffset = "+window.pageYOffset
-	    },!1);
-	  </script>
+	<footer th:fragment="fondo">cazzabubolo</footer>
 </body>
 </html>

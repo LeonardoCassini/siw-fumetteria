@@ -8,6 +8,13 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<section>
+	<ol>
+			<li><a th:href="@{/}">Horror</a></li>
+			<li><a th:href="@{generi}">Generi</a></li>
+			<li><a th:href="@{autori}">Autori</a></li>
+			<li><a th:href="@{opere}">Opere</a></li>
+			<li><a th:href="@{news}">News</a></li>
+		</ol>
 	</section>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
