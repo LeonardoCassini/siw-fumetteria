@@ -9,9 +9,7 @@ public class Genere
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	
 	private String tipologia;
-	
 	@ManyToMany
 	private List <Opera> opere;
 
