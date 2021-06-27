@@ -19,7 +19,7 @@ public class Opera
 	private String nazionalita;
 	@ManyToOne
 	private Autore autore;
-	@OneToMany
+	@OneToMany(mappedBy="opera")
 	private List<Volume> volumi;
 	
 	public Long getId() 
@@ -38,12 +38,12 @@ public class Opera
 	{
 		this.nome = nome;
 	}
-//	public String getGenere() {
-//		return genere;
-//	}
-//	public void setGenere(String genere) {
-//		this.genere = genere;
-//	}
+	public List<Genere> getGenere() {
+		return genere;
+	}
+	public void setGenere(List<Genere> genere) {
+		this.genere = genere;
+	}
 	public String getSinossi() 
 	{
 		return sinossi;
@@ -84,6 +84,16 @@ public class Opera
 	{
 		this.nazionalita = nazionalita;
 	}
-	
-	
+	public Autore getAutore() {
+		return autore;
+	}
+	public void setAutore(Autore autore) {
+		this.autore = autore;
+	}
+	public List<Volume> getVolumi() {
+		return volumi;
+	}
+	public void setVolumi(List<Volume> volumi) {
+		this.volumi = volumi;
+	}
 }

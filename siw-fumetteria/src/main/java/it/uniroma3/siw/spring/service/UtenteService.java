@@ -3,12 +3,9 @@ package it.uniroma3.siw.spring.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import it.uniroma3.siw.spring.model.Ordine;
 import it.uniroma3.siw.spring.model.Utente;
 import it.uniroma3.siw.spring.repository.UtenteRepository;
 
@@ -42,16 +39,6 @@ public class UtenteService
 		Iterable<Utente> it = this.utenteRepository.findAll();
 		for(Utente cliente : it)
 			result.add(cliente);
-		return result;
-	}
-	
-	//metodo per recuperare gli ordini di un cliente
-	public List<Ordine> getOrdini(Long id)
-	{
-		List<Ordine> result = new ArrayList<Ordine>();
-		Iterable<Ordine> it = this.utenteRepository.findOrdineByUtente(id);
-		for(Ordine ordine : it)
-			result.add(ordine);
 		return result;
 	}
 }

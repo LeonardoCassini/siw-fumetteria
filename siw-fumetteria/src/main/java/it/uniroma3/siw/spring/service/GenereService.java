@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.siw.spring.repository.GenereRepository;
 import it.uniroma3.siw.spring.model.Genere;
-import it.uniroma3.siw.spring.model.Opera;
 
 @Service
 public class GenereService 
@@ -42,17 +41,5 @@ public class GenereService
 	public Genere saveGenere(Genere genere) 
 	{
 		return this.genereRepository.save(genere);
-	}
-	
-	@Transactional
-	public List<Opera> getOpere(Long id)
-	{
-		List<Opera> result = new ArrayList<Opera>();
-		Iterable<Opera> it= this.genereRepository.findOpereByGenere(id);
-		for(Opera opera : it)
-		{
-			result.add(opera);
-		}
-		return result;
 	}
 }

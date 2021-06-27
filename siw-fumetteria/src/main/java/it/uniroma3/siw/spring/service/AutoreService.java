@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.siw.spring.model.Autore;
-import it.uniroma3.siw.spring.model.Opera;
+//import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.repository.AutoreRepository;
 
 @Service
@@ -17,7 +17,7 @@ public class AutoreService
 	protected AutoreRepository autoriRepository;
 	
 	//Metodo per recuperare un autore dal db
-	@Transactional
+	
 	public Autore getAutore(Long id) 
 	{
 		Optional<Autore> result = this.autoriRepository.findById(id);
@@ -32,7 +32,7 @@ public class AutoreService
 	}
 	
 	//Metodo per recuperare tutti gli Autori dal db
-	@Transactional
+	
 	public List<Autore> getAllAutori()
 	{
 		List<Autore> result = new ArrayList<Autore>();
@@ -41,7 +41,8 @@ public class AutoreService
 			result.add(autore);
 		return result;
 	}
-	@Transactional
+	
+	
 	public List<Autore> getMangaka()
 	{
 		List<Autore> result = new ArrayList<Autore>();
@@ -51,7 +52,7 @@ public class AutoreService
 		return result;
 	}
 	
-	@Transactional
+	
 	public List<Autore> getFumettista()
 	{
 		List<Autore> result = new ArrayList<Autore>();
@@ -61,15 +62,14 @@ public class AutoreService
 		return result;
 	}
 	
-	@Transactional
-	public List<Opera> getOpere(Long id)
-	{
-		List<Opera> result = new ArrayList<Opera>();
-		Iterable<Opera> it = this.autoriRepository.findOpereByAutore(id);
-		for(Opera opera:it)
-		{
-			result.add(opera);
-		}
-		return result;
-	}
+//	public List<Opera> getOpereAutore(Long id)
+//	{
+//		List<Opera> result = new ArrayList<Opera>();
+//		Iterable<Opera> it= this.autoriRepository.findByOpere(id);
+//		for(Opera Opera : it)
+//		{
+//			result.add(Opera);
+//		}
+//		return result;
+//	}
 }

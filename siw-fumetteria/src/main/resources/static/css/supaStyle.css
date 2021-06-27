@@ -41,7 +41,7 @@ nav > ul
     background-color:red;
 }
 
-li > a
+nav > ul > li > a
 {
     display: block;
     float: left;

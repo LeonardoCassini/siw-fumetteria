@@ -6,8 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import it.uniroma3.siw.spring.model.Autore;
 import it.uniroma3.siw.spring.model.Opera;
-import it.uniroma3.siw.spring.model.Volume;
 import it.uniroma3.siw.spring.repository.OperaRepository;
 
 @Service
@@ -44,15 +45,13 @@ public class OperaService
 		return this.operaRepository.save(opera);
 	}
 	
-	//metodo per trovare tutti i volumi
-	@Transactional
-	public List<Volume> getVolumi(Long id)
+	public List<Opera> getOpereAutore(Autore autore)
 	{
-		List<Volume> result = new ArrayList<Volume>();
-		Iterable<Volume> it= this.operaRepository.findVolimiByOpera(id);
-		for(Volume volumi : it)
+		List<Opera> result = new ArrayList<Opera>();
+		Iterable<Opera> it= this.operaRepository.findByAutore(autore);
+		for(Opera Opera : it)
 		{
-			result.add(volumi);
+			result.add(Opera);
 		}
 		return result;
 	}

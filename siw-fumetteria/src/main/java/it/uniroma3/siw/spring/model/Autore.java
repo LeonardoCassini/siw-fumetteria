@@ -83,7 +83,4 @@ public class Autore
 	{
 		this.opere = opere;
 	}
-	
-	
-
 }

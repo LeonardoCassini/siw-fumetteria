@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/strutturaBase.html :: headerfiles(title=autori)">
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=OopereAutore)">
 </head>
 <body>
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<ul>
-		<li th:each="autore : ${autori}"><a href="opereAutore.html"
-			th:href="@{'/autore' + '/' + ${autore.id}}"
-			th:text="|${autore.nome} ${autore.cognome}|">nome cognome</a></li>
+		<li th:each="opera : ${opereAutore.opere}"><a href="volumi.html"
+			th:href="@{'/opera' + '/' + ${opera.id}}"
+			th:text="|${opera.nome} ${opera.sinossi}|"></a></li>
 	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
