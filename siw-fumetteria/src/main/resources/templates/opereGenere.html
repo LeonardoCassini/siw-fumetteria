@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/strutturaBase.html :: headerfiles(title=OpereAutore)">
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=operaGenere)">
 </head>
 <body>
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<ul>
-		<li th:each="opera : ${opereAutore.opere}"><a href="volumi.html"
+		<li th:each="opera : ${opereGenere.opere}"><a href="volumi.html"
 			th:href="@{'/opera' + '/' + ${opera.id}}"
 			th:text="|${opera.nome}|"></a><div th:text="|${opera.sinossi}|"></div></li>
 	</ul>

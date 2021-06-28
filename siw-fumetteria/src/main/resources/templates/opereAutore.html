@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/strutturaBase.html :: headerfiles(title=OopereAutore)">
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=OpereAutore)">
 </head>
 <body>
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
@@ -10,7 +10,7 @@
 	<ul>
 		<li th:each="opera : ${opereAutore.opere}"><a href="volumi.html"
 			th:href="@{'/opera' + '/' + ${opera.id}}"
-			th:text="|${opera.nome} ${opera.sinossi}|"></a></li>
+			th:text="|${opera.nome}|"></a><div th:text="|${opera.sinossi}|"></div></li>
 	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>

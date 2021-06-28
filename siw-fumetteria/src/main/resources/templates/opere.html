@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/strutturaBase.html :: headerfiles(title=#{pageTitle.persona})">
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=opere)">
 </head>
 <body>
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
+	<ul>
+		<li th:each="opere : ${opere}">
+		<a href="volumi.html" 
+		   th:href="@{'/opere' + '/' + ${opere.id}}"
+		   th:text="|${opere.nome}|">nome</a>
+		   <div th:text="|${opere.sinossi}|"></div>
+		   </li>
+	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
 </html>

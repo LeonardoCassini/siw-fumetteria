@@ -43,4 +43,10 @@ public class MainController
 	{
 		return"opereAutore";
 	}
+	
+	@RequestMapping("/opereGenere")
+	public String opereGenere()
+	{
+		return"opereGenere";
+	}
 }

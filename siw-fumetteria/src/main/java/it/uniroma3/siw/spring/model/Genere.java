@@ -37,4 +37,9 @@ public class Genere
 	{
 		this.opere = opere;
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 }

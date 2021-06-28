@@ -57,8 +57,8 @@ public class AutoreService
 	{
 		List<Autore> result = new ArrayList<Autore>();
 		Iterable<Autore> it = this.autoriRepository.findByStruttura(67);
-		for(Autore autore : it)
-			result.add(autore);
+		for(Autore autori : it)
+			result.add(autori);
 		return result;
 	}
 	

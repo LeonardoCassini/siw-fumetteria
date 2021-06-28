@@ -8,9 +8,9 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<ul>
-		<li th:each="autore : ${autori}"><a href="opereAutore.html"
-			th:href="@{'/autore' + '/' + ${autore.id}}"
-			th:text="|${autore.nome} ${autore.cognome}|">nome cognome</a></li>
+		<li th:each="autori : ${autori}"><a href="opereAutore.html"
+			th:href="@{'/autori' + '/' + ${autori.id}}"
+			th:text="|${autori.nome} ${autori.cognome}|">nome cognome</a></li>
 	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>

@@ -21,15 +21,15 @@ public class GenereService
 	{
 		List<Genere> result = new ArrayList<Genere>();
 		Iterable<Genere> it= this.genereRepository.findAll();
-		for(Genere genere : it)
+		for(Genere generi : it)
 		{
-			result.add(genere);
+			result.add(generi);
 		}
 		return result;
 	}
 	
 	//metodo per recuperare un genere dal db
-	@Transactional
+	
 	public Genere getGenere(Long id)
 	{
 		Optional<Genere> result = this.genereRepository.findById(id);
