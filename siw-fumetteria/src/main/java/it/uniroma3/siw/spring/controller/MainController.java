@@ -49,4 +49,16 @@ public class MainController
 	{
 		return"opereGenere";
 	}
+	
+	@RequestMapping("/volumi")
+	public String volumi()
+	{
+		return "volumi";
+	}
+	
+	@RequestMapping("/carrello")
+	public String carrello()
+	{
+		return"carrello";
+	}
 }

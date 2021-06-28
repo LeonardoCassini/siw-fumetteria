@@ -11,9 +11,11 @@ public class Volume
 	private int pagine;
 	@Id
 	private String isbn;
+	private String titolo;
 	private int numVolume;
 	private String sinossi;
 	private float prezzo;
+	private String nomeCopertina;
 	private String copertina;
 	private int copie;
 	private LocalDate pubblicazione;
@@ -22,6 +24,8 @@ public class Volume
 	private Opera opera;
 	@ManyToMany
 	private List <Ordine> ordini;
+	@ManyToMany
+	private List<Carrello> carrello;
 	
 	public int getPagine() 
 	{
@@ -95,6 +99,34 @@ public class Volume
 	{
 		this.ristampa = ristampa;
 	}
-	
-	
+	public String getTitolo() {
+		return titolo;
+	}
+	public void setTitolo(String titolo) {
+		this.titolo = titolo;
+	}
+	public Opera getOpera() {
+		return opera;
+	}
+	public void setOpera(Opera opera) {
+		this.opera = opera;
+	}
+	public List<Ordine> getOrdini() {
+		return ordini;
+	}
+	public void setOrdini(List<Ordine> ordini) {
+		this.ordini = ordini;
+	}
+	public String getNomeCopertina() {
+		return nomeCopertina;
+	}
+	public void setNomeCopertina(String nomeCopertina) {
+		this.nomeCopertina = nomeCopertina;
+	}
+	public List<Carrello> getCarrello() {
+		return carrello;
+	}
+	public void setCarrello(List<Carrello> carrello) {
+		this.carrello = carrello;
+	}
 }

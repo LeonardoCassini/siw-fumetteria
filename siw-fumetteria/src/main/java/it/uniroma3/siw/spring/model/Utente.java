@@ -22,6 +22,8 @@ public class Utente
 	private List<Ordine> ordini;
 	@OneToOne(mappedBy="utente")
 	private Credenziali credenziali;
+	@OneToOne
+	private Carrello carrello;
 	
 	public Long getId() 
 	{

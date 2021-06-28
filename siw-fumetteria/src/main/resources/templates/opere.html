@@ -8,11 +8,11 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<ul>
-		<li th:each="opere : ${opere}">
+		<li th:each="opera : ${opere}">
 		<a href="volumi.html" 
-		   th:href="@{'/opere' + '/' + ${opere.id}}"
-		   th:text="|${opere.nome}|">nome</a>
-		   <div th:text="|${opere.sinossi}|"></div>
+		   th:href="@{'/opera' + '/' + ${opera.id}}"
+		   th:text="|${opera.nome}|">nome</a>
+		   <div th:text="|${opera.sinossi}|"></div>
 		   </li>
 	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>

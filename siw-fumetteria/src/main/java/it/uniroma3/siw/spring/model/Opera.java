@@ -17,6 +17,7 @@ public class Opera
 	private String stato;
 	private String struttura;
 	private String nazionalita;
+	private String immagine;
 	@ManyToOne
 	private Autore autore;
 	@OneToMany(mappedBy="opera")
@@ -95,5 +96,11 @@ public class Opera
 	}
 	public void setVolumi(List<Volume> volumi) {
 		this.volumi = volumi;
+	}
+	public String getImmagine() {
+		return immagine;
+	}
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 }

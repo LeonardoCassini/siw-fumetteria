@@ -30,7 +30,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			// definiamo chi può accedere
 			.authorizeRequests()
 			// chiunque può accedere alle seguenti pagine
-			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opere/{id}","/opereGenere","/generi/{id}","/css/**","/images/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}","/opereGenere","/generi/{id}","/volumi","/volume/{id}","/carrello","/css/**","/images/**").permitAll()
 			// chiunque può mandare richieste di post per il login e la registrazione
 			.antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
 			// solo gli utenti autenticati con il ruolo di admin possono accedere a risorse con path /admin/**

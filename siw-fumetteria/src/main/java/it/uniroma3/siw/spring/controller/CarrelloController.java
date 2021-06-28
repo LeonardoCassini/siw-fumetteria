@@ -6,20 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import it.uniroma3.siw.spring.service.VolumeService;
-
+import it.uniroma3.siw.spring.service.CarrelloService;
 
 @Controller
-public class VolumeController 
+public class CarrelloController 
 {
 	@Autowired
-	private VolumeService volumeService;
+	private CarrelloService carrelloService;
 	
-	@RequestMapping(value="/volume/{id}",method=RequestMethod.GET)
-	public String showVolume(@PathVariable("id") String id, Model model)
-	{
-		model.addAttribute("volume", this.volumeService.getVolume(id));
-		return"volume.html";
-	}
+//	@RequestMapping()
+//	public String showCarello(Model model)
+//	{
+//		model.addAttribute("volumiCarrello", this.carrelloService.)
+//	}
 }
