@@ -11,54 +11,13 @@ public class MainController
 	@RequestMapping(value= {"/","homePage"}, method= RequestMethod.GET)
 	public String home(Model model)
 	{
-		return "homePage";
+		return "/homePage";
 	}
 	
-	@RequestMapping("/autori")
-	public String autori() 
-	{
-	    return "autori";
-	}
 	
 	@RequestMapping("/news")
 	public String news() 
 	{
-	    return "news";
-	}
-	
-	@RequestMapping("/generi")
-	public String generi() 
-	{
-	    return "generi";
-	}
-	
-	@RequestMapping("/opere")
-	public String opere() 
-	{
-	    return "opere";
-	}
-	
-	@RequestMapping("/opereAutore")
-	public String opereAutore()
-	{
-		return"opereAutore";
-	}
-	
-	@RequestMapping("/opereGenere")
-	public String opereGenere()
-	{
-		return"opereGenere";
-	}
-	
-	@RequestMapping("/volumi")
-	public String volumi()
-	{
-		return "volumi";
-	}
-	
-	@RequestMapping("/carrello")
-	public String carrello()
-	{
-		return"carrello";
+	    return "/news";
 	}
 }

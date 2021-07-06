@@ -16,6 +16,18 @@ public class AutoreController
 	@Autowired
 	private AutoreService autoreService;
 	
+	@RequestMapping("/autori")
+	public String autori() 
+	{
+	    return "autori";
+	}
+	
+	@RequestMapping("/autoreStruttura")
+	public String autoreStruttura()
+	{
+		return "autoreStruttura";
+	}
+	
 	@RequestMapping(value="/autori", method= RequestMethod.GET)
 	public String showAutori(Model model)
 	{
@@ -28,5 +40,19 @@ public class AutoreController
 	{
 		model.addAttribute("opereAutore",this.autoreService.getAutore(id));
 		return "opereAutore.html";
+	}
+	
+	@RequestMapping(value="/autoreStruttura",method=RequestMethod.GET)
+	public String showMangaka(int value,Model model)
+	{
+		if(value==67)
+		{
+			model.addAttribute("autori",this.autoreService.getMangaka());
+		}
+		else
+		{
+			model.addAttribute("autori",this.autoreService.getFumettista());
+		}
+		return"/autoreStruttura";
 	}
 }

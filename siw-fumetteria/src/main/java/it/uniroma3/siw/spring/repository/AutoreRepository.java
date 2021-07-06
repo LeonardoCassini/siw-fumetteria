@@ -8,5 +8,4 @@ import it.uniroma3.siw.spring.model.Autore;
 public interface AutoreRepository extends CrudRepository<Autore, Long>
 {
 	public List<Autore> findByStruttura(int struttura);
-	//public List<Opera> findByOpere(Long id);
 }

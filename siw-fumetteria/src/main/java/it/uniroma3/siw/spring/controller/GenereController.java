@@ -15,6 +15,12 @@ public class GenereController
 	@Autowired
 	private GenereService genereService;
 	
+	@RequestMapping("/generi")
+	public String generi() 
+	{
+	    return "generi";
+	}
+	
 	@RequestMapping(value="/generi",method=RequestMethod.GET)
 	public String showGeneri(Model model)
 	{

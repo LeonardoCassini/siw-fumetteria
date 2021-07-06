@@ -70,9 +70,8 @@ section
 
 .posDestra
 {
-  position:fixed;
-  right:1px;
-  top:320px;
+  float: right;
+  margin-top:20px;
 }
 
 footer

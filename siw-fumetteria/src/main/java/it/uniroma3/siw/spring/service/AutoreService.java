@@ -61,15 +61,4 @@ public class AutoreService
 			result.add(autori);
 		return result;
 	}
-	
-//	public List<Opera> getOpereAutore(Long id)
-//	{
-//		List<Opera> result = new ArrayList<Opera>();
-//		Iterable<Opera> it= this.autoriRepository.findByOpere(id);
-//		for(Opera Opera : it)
-//		{
-//			result.add(Opera);
-//		}
-//		return result;
-//	}
 }

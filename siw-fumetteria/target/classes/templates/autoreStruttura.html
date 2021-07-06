@@ -9,12 +9,14 @@
 	</nav>
 	<div>
 	<span>Ricerca solo mangaka o fumettisti</span>
-	<a th:href="@{/autoreStruttura}">
-	<button type="submit" th:value="77">Mangaka</button>
-	</a>
-	<a th:href="@{/autoreStruttura}">
-	<button type="submit" th:value="67">Fumettisti</button>
-	</a>
+	<form th:action="@{/trovaMangaka}" method="get">
+	<input type="hidden" value="77"/>
+	<button type="submit" value="77">Mangaka</button>
+	</form>
+	<form th:action="@{/trovaFumettista}"method="get">
+	<input type="hidden"value="77"/>
+	<button type="submit"value="77">Fumettisti</button>
+	</form>
 	</div>
 	<ul>
 		<li th:each="autori : ${autori}"><a href="opereAutore.html"

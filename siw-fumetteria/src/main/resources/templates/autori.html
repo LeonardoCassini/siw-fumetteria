@@ -7,6 +7,15 @@
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
+	<div>
+	<span>Ricerca solo mangaka o fumettisti</span>
+	<a th:href="@{/autoreStruttura}">
+	<button type="submit" th:value="77">Mangaka</button>
+	</a>
+	<a th:href="@{/autoreStruttura}">
+	<button type="submit" th:value="67">Fumettisti</button>
+	</a>
+	</div>
 	<ul>
 		<li th:each="autori : ${autori}"><a href="opereAutore.html"
 			th:href="@{'/autori' + '/' + ${autori.id}}"

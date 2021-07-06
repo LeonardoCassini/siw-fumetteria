@@ -14,6 +14,12 @@ public class CarrelloController
 	@Autowired
 	private CarrelloService carrelloService;
 	
+	@RequestMapping("/carrello")
+	public String carrello()
+	{
+		return"carrello";
+	}
+	
 //	@RequestMapping()
 //	public String showCarello(Model model)
 //	{

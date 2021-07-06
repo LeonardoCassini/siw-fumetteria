@@ -14,6 +14,24 @@ public class OperaController
 	@Autowired
 	private OperaService operaService;
 	
+	@RequestMapping("/opere")
+	public String opere() 
+	{
+	    return "opere";
+	}
+	
+	@RequestMapping("/opereAutore")
+	public String opereAutore()
+	{
+		return"opereAutore";
+	}
+	
+	@RequestMapping("/opereGenere")
+	public String opereGenere()
+	{
+		return"opereGenere";
+	}
+	
 	@RequestMapping(value="/opere", method= RequestMethod.GET)
 	public String showOpere(Model model)
 	{

@@ -16,6 +16,13 @@ public class VolumeController
 	@Autowired
 	private VolumeService volumeService;
 	
+	
+	@RequestMapping("/volumi")
+	public String volumi()
+	{
+		return "volumi";
+	}
+	
 	@RequestMapping(value="/volume/{id}",method=RequestMethod.GET)
 	public String showVolume(@PathVariable("id") String id, Model model)
 	{
