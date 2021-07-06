@@ -9,12 +9,18 @@
 	</nav>
 	<div>
 	<span>Ricerca solo mangaka o fumettisti</span>
-	<a th:href="@{/autoreStruttura}">
-	<button type="submit" th:value="77">Mangaka</button>
-	</a>
-	<a th:href="@{/autoreStruttura}">
-	<button type="submit" th:value="67">Fumettisti</button>
-	</a>
+	<!--  <form action="#" th:action="@{/trovaMangaka}" method="get">
+	<input type="hidden" value="77"/>
+	<button type="submit" value="77">Mangaka</button>
+	</form>
+	<form action="#" th:action="@{/trovaFumettista}"method="get">
+	<input type="hidden" value="67"/>
+	<button type="submit"value="67">Fumettisti</button>
+	</form>-->
+	<form action="#" th:action="@{/trovaArtista}" method="get">
+	<button type="submit" name="action" value="77">Mangaka</button>
+	<button type="submit" name="action" value="67">Fumettisti</button>
+	</form>
 	</div>
 	<ul>
 		<li th:each="autori : ${autori}"><a href="opereAutore.html"
