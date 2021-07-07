@@ -25,6 +25,24 @@ public class Utente
 	@OneToOne
 	private Carrello carrello;
 	
+	public List<Ordine> getOrdini() {
+		return ordini;
+	}
+	public void setOrdini(List<Ordine> ordini) {
+		this.ordini = ordini;
+	}
+	public Credenziali getCredenziali() {
+		return credenziali;
+	}
+	public void setCredenziali(Credenziali credenziali) {
+		this.credenziali = credenziali;
+	}
+	public Carrello getCarrello() {
+		return carrello;
+	}
+	public void setCarrello(Carrello carrello) {
+		this.carrello = carrello;
+	}
 	public Long getId() 
 	{
 		return id;

@@ -20,7 +20,7 @@ public class Credenziali
 	private Long id;
 	
 	@Column(nullable = false, unique = true)
-	private String email;
+	private String username;
 	
 	@Column(nullable = false)
 	private String password;
@@ -50,17 +50,17 @@ public class Credenziali
 	/**
 	 * @return the email
 	 */
-	public String getEmail() 
+	public String getUsername() 
 	{
-		return email;
+		return username;
 	}
 
 	/**
 	 * @param email the email to set
 	 */
-	public void setEmail(String email) 
+	public void setUsername(String email) 
 	{
-		this.email = email;
+		this.username = email;
 	}
 
 	/**

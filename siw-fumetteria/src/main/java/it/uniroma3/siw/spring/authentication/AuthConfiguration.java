@@ -28,9 +28,11 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			// definiamo chi può accedere
 			.authorizeRequests()
 			// chiunque può accedere alle seguenti pagine
-			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}","/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/css/**","/images/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}").permitAll()
+			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/css/**","/images/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/registrazione", "/login").permitAll()
 			// chiunque può mandare richieste di post per il login e la registrazione
-			.antMatchers(HttpMethod.POST, "/login", "/register").permitAll()
+			.antMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
 			// solo gli utenti autenticati con il ruolo di admin possono accedere a risorse con path /admin/**
 			.antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
 			.antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
