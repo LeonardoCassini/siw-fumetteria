@@ -8,16 +8,18 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<div th:object="${volume}">
-	<img th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}"/>
+	<img class="imgadj" th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}"/>
 		<ul>
-			<li th:text=|${volume.isbn}|></li>
-			<li th:text=|${volume.titolo}|></li>
-			<li th:text=|${volume.numVolume}|></li>
-			<li th:text=|${volume.prezzo}|></li>
-			<li th:text=|${volume.pubblicazione}|></li>
-			<li th:text=|${volume.ristampa}|></li>
-			<li th:text=|${volume.copie}|></li>
-			<li th:text=|${volume.sinossi}|></li>
+			<li th:text="'Isbn: '+*{isbn}"></li>
+			<li th:text="'Titolo: '+*{titolo}"></li>
+			<li th:text="'N&deg: '+*{numVolume}"></li>
+			<li th:text="'Prezzo: '+*{prezzo}+'&#8364'"></li>
+			<li th:text="'Data di publicazione: '+*{pubblicazione}"></li>
+			<li th:if="*{ristampa}" th:text="'Ristampa: Si'"></li>
+			<li th:unless="*{ristampa}" th:text="'Ristampa: No'"></li>
+			<li th:text="'N&deg copie disponibili: '+*{copie}"></li>
+			<li th:text="'Trama'"></li>
+			<li th:text="*{sinossi}"></li>
 		</ul>
 	</div>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>

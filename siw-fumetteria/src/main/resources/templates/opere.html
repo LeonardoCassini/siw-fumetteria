@@ -7,8 +7,20 @@
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
+	<div>
+	<span>Filtri</span>
+	<form action="#" th:action="@{/filtraOpere}" method="get">
+	<label for="fumettiasiatici">Manga</label>
+	<input id="fumettiasiatici" type="checkbox" name="action" value="manga"/>
+	<label for="fumetti">Comics</label>
+	<input id="fumetti"type="checkbox" name="action" value="comic"/>
+	<input type="hidden"name="action" value="0">
+	<button type="submit">Filtra</button>
+	</form>
+	</div>
 	<ul>
 		<li th:each="opera : ${opere}">
+		<div><img class="imgadj" th:src="@{${'/images/' + opera.immagine + '.jpg'}}"/></div>
 		<a href="volumi.html" 
 		   th:href="@{'/opera' + '/' + ${opera.id}}"
 		   th:text="|${opera.nome}|">nome</a>

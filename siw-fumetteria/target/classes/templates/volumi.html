@@ -9,7 +9,7 @@
 	</nav>
 	<ul>
 		<li th:each="volume : ${volumi.volumi}">
-		<!--<div><img th:src="@{${'/images/' + volume.immagine + '.jpg'}}"/></div>  -->
+		<div><img class="imgadj" th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}"/></div> 
 		<a href="volume.html"
 			th:href="@{'/volume' + '/' + ${volume.isbn}}"
 			th:text="|${volume.titolo}|"></a><div th:text="|${volume.sinossi}|"></div></li>

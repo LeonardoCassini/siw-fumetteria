@@ -40,4 +40,27 @@ public class OperaService
 	{
 		return this.operaRepository.save(opera);
 	}
+	
+	//metodo per cercare le opere in base alla struttura della pagina
+	public List<Opera> getManga(String struttura)
+	{
+		List<Opera> result = new ArrayList<Opera>();
+		Iterable<Opera> it= this.operaRepository.findByStruttura(struttura);
+		for(Opera Opera : it)
+		{
+			result.add(Opera);
+		}
+		return result;
+	}
+	
+	public List<Opera> getComic(String struttura)
+	{
+		List<Opera> result = new ArrayList<Opera>();
+		Iterable<Opera> it= this.operaRepository.findByStruttura(struttura);
+		for(Opera Opera : it)
+		{
+			result.add(Opera);
+		}
+		return result;
+	}
 }

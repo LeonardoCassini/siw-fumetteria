@@ -37,23 +37,8 @@ public class AutoreController
 		model.addAttribute("opereAutore",this.autoreService.getAutore(id));
 		return "opereAutore.html";
 	}
-	
-//	@RequestMapping(value="/trovaArtista",method=RequestMethod.GET,params="action=77")
-//	public String showMangaka(Model model)
-//	{
-//		model.addAttribute("autori",this.autoreService.getMangaka());
-//		return"/autori";
-//	}
-//	
-//	@RequestMapping(value="/trovaArtista",method=RequestMethod.GET,params="action=67")
-//	public String showFumettisti(Model model)
-//	{
-//		model.addAttribute("autori",this.autoreService.getFumettista());
-//		return"/autori";
-//	}
-	
-	
-	@RequestMapping(value="/trovaArtista",method=RequestMethod.GET)
+
+	@RequestMapping(value="/filtraAutori",method=RequestMethod.GET)
 	public String showFumettistiMangaka(Model model,@RequestParam(value="action",required=true)int valore)
 	{
 		if(valore==77)
@@ -63,6 +48,10 @@ public class AutoreController
 		else if(valore==67)
 		{
 			model.addAttribute("autori",this.autoreService.getFumettista());
+		}
+		if(valore!=67&&valore!=77)
+		{
+			model.addAttribute("autori",this.autoreService.getAllAutori());
 		}
 		return"/autori";
 	}

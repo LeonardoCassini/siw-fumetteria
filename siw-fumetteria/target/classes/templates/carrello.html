@@ -7,6 +7,14 @@
 	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
+	
+	<ul>
+	
+	<li th:if="${volumeCarrello}" th:object="${volumeCarrello}" th:each="volume:${volumeCarrello}" th:text=" *{titolo}+' '+*{prezzo}">
+	<div><img class="imgadj" th:src="@{${'/images/' + opera.immagine + '.jpg'}}"/></div>
+	</li>
+	<li th:unless="${volumeCarrello}"  th:text="'Il carrello &eacute vuoto'">
+	</ul>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
 </html>
