@@ -14,7 +14,7 @@ public class CredenzialiValidator implements Validator{
 	@Autowired
 	private CredenzialiService credenzialiService;
 	
-	final Integer MAX_EMAIL_LENGTH = 20;
+	final Integer MAX_EMAIL_LENGTH = 30;
     final Integer MIN_EMAIL_LENGTH = 4;
     final Integer MAX_PASSWORD_LENGTH = 20;
     final Integer MIN_PASSWORD_LENGTH = 6;

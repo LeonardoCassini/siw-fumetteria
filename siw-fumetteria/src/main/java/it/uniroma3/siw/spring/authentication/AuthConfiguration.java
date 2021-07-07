@@ -29,8 +29,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			.authorizeRequests()
 			// chiunque può accedere alle seguenti pagine
 			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}").permitAll()
-			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/css/**","/images/**").permitAll()
-			.antMatchers(HttpMethod.GET, "/registrazione", "/login").permitAll()
+			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/filtraOpereGenere","/css/**","/images/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/registrazione", "/login","/cliente","/genereStruttura").permitAll()
+			//.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}","/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/filtraOpereGenere", "/registrazione", "/login","/carrello","/css/**","/images/**").permitAll()
 			// chiunque può mandare richieste di post per il login e la registrazione
 			.antMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
 			// solo gli utenti autenticati con il ruolo di admin possono accedere a risorse con path /admin/**

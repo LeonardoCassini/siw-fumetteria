@@ -31,7 +31,7 @@ public class GenereController
 	@RequestMapping(value="/generi/{id}", method=RequestMethod.GET)
 	public String showOpere(@PathVariable("id") Long id, Model model)
 	{
-		model.addAttribute("opereGenere",this.genereService.getGenere(id));
+		model.addAttribute("opere",this.genereService.getGenere(id));
 		return "opereGenere.html";
 	}
 }

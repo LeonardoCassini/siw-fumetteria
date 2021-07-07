@@ -1,6 +1,7 @@
 package it.uniroma3.siw.spring.service;
 
 import java.util.ArrayList;
+//import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class OperaService
 	}
 	
 	//metodo per cercare le opere in base alla struttura della pagina
-	public List<Opera> getManga(String struttura)
+	public List<Opera> getOperaByStruttura(String struttura)
 	{
 		List<Opera> result = new ArrayList<Opera>();
 		Iterable<Opera> it= this.operaRepository.findByStruttura(struttura);
@@ -53,7 +54,7 @@ public class OperaService
 		return result;
 	}
 	
-	public List<Opera> getComic(String struttura)
+	public List<Opera> getStrutturaGenere(String struttura)
 	{
 		List<Opera> result = new ArrayList<Opera>();
 		Iterable<Opera> it= this.operaRepository.findByStruttura(struttura);
@@ -63,4 +64,20 @@ public class OperaService
 		}
 		return result;
 	}
+	
+	
+//	public List<Opera> getStrutturaGenere(String struttura,List<Opera> opere)
+//	{
+//		List<Opera> result = new ArrayList<Opera>();
+//		Iterator<Opera> it=opere.iterator();
+//		while(it.hasNext())
+//		{
+//			Opera opera=it.next();
+//			if(opera.getStruttura().equals(struttura))
+//			{
+//				result.add(opera);
+//			}
+//		}
+//		return result;
+//	}
 }

@@ -21,62 +21,81 @@ import it.uniroma3.siw.spring.service.CredenzialiService;
 public class AuthController 
 {
 	@Autowired
-    private CredenzialiService credentialsService;
+	private CredenzialiService credentialsService;
 	@Autowired
 	private UtenteValidator utenteValidator;
 	@Autowired
 	private CredenzialiValidator credenzialiValidator;
 
-	
+
 	@RequestMapping(value = "/registrazione", method = RequestMethod.GET)
 	public String formRegistrazione (Model model) {
 		model.addAttribute("utente", new Utente());
 		model.addAttribute("credenziali", new Credenziali());
 		model.addAttribute("carrello", new Carrello());
-		return "registrazione";
+		return "/registrazione";
 	}
-	
-	
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(Model model) {
-        return "login.html";
-    }
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET) 
-    public String logout(Model model) {
-        return "home.html";
-    }
 
-    @RequestMapping(value = "/default", method = RequestMethod.GET)
-    public String defaultAfterLogin(Model model) {
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String login(Model model) 
+	{
+		return "/login";
+	}
 
-        UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Credenziali credentials = credentialsService.getCredentials(userDetails.getUsername());
-        if (credentials.getRole().equals(Credenziali.ADMIN_ROLE)) {
-            return "/admin/adminHome.html";
-        }
-        return "home.html";
-    }
-    
-    @RequestMapping(value = { "/registrazione" }, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("utente") Utente utente, 
-    		BindingResult utenteBr, 
-    		@ModelAttribute("credenziali") Credenziali credenziali, 
-    		BindingResult credenzialiBr,
-    		@ModelAttribute("carrello") Carrello carrello, 
-    		Model model) {
-    	
-    	
-    	this.utenteValidator.validate(utente, utenteBr);
-    	this.credenzialiValidator.validate(credenziali, credenzialiBr);
-    	
-    	if(!utenteBr.hasErrors() && ! credenzialiBr.hasErrors()) {
-    		utente.setEmail(credenziali.getUsername());
-    		credenziali.setCliente(utente);
-    		credentialsService.saveCredentials(credenziali);
-    		return "redirect/homePage";
-    	}
-    	return "registrazione";
-    }
-    
+	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
+	public String logout(Model model) 
+	{
+		return "/homePage";
+	}
+
+	@RequestMapping(value = "/default", method = RequestMethod.GET)
+	public String defaultAfterLoginAdmin(Model model) 
+	{
+
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credenziali credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if (credentials.getRole().equals(Credenziali.ADMIN_ROLE)) 
+		{
+			return "/admin/adminHome.html";
+		}
+		return "/homePage";
+	}
+
+//	@RequestMapping(value = "/default", method = RequestMethod.GET)
+//	public String defaultAfterLoginCliente(Model model) 
+//	{
+//
+//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		Credenziali credentials = credentialsService.getCredentials(userDetails.getUsername());
+//		if (credentials.getRole().equals(Credenziali.DEFAULT_ROLE)) 
+//		{
+//			return "/cliente";
+//		}
+//		return "/homePage";
+//	}
+
+	@RequestMapping(value = { "/registrazione" }, method = RequestMethod.POST)
+	public String registerUser(@ModelAttribute("utente") Utente utente, 
+			BindingResult utenteBr, 
+			@ModelAttribute("credenziali") Credenziali credenziali, 
+			BindingResult credenzialiBr,
+			@ModelAttribute("carrello") Carrello carrello, 
+			Model model) 
+	{
+
+
+		this.utenteValidator.validate(utente, utenteBr);
+		this.credenzialiValidator.validate(credenziali, credenzialiBr);
+
+		if(!utenteBr.hasErrors() && ! credenzialiBr.hasErrors()) 
+		{
+			utente.setEmail(credenziali.getUsername());
+			credenziali.setCliente(utente);
+			credentialsService.saveCredentials(credenziali);
+			return "redirect:/homePage";
+		}
+		return "/registrazione";
+	}
+
 }
