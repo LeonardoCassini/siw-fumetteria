@@ -2,11 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles(title)">
 	<meta charset="UTF-8"/>
-	<link th:href="@{/css/supaStyle.css}" rel="stylesheet">
+	<link  th:href="@{/css/supaStyle.css}" rel="stylesheet">
 	<title th:text="${title}"></title>
 </head>
 <body>
-	<a name="inizio"></a>
 	<header th:fragment="intestazione">
 		<a th:href="@{/}"> <img th:src="@{/images/logo.png}">
 		</a>
@@ -21,7 +20,7 @@
 			<li><a th:href="@{/carrello}"> 
 			<img class="carrello" src="/images/carrello.png" alt="carrello">
 			</a></li>
-			<li><a th:text="${#authentication.name}" th:href="@{/cliente/{username}}">Cliente</a></li>
+			<li><a th:text="${#authentication.name}" th:href="@{'/cliente' + '/' +${#authentication.name}}">Cliente</a></li>
 			<li><a th:href="@{/logout}">Logout</a></li>
 			<li class="posDestra"><a th:href="@{/login}">Login</a></li>
 			
@@ -29,11 +28,6 @@
 				placeholder="Cerca..." /> <input type="submit" value="cerca" /></li>-->
 		</ul>
 	</nav>
-	<div id="tornasu">
-		<a th:href="#inizio"> <img src="/images/froccia2.png" class="tornasu"
-			width="40px" height="40px">
-		</a>
-	</div>
 	<footer th:fragment="fondo">cazzabubolo</footer>
 </body>
 </html>

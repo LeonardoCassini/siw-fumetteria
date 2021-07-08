@@ -29,4 +29,10 @@ public class VolumeController
 		model.addAttribute("volume", this.volumeService.getVolume(id));
 		return"volume.html";
 	}
+	
+	@RequestMapping("/inserisciVolume")
+	public String inserisciVolume()
+	{
+		return"/inserisciVolume";
+	}
 }

@@ -3,10 +3,14 @@ package it.uniroma3.siw.spring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import it.uniroma3.siw.spring.controller.validator.GenereValidator;
+import it.uniroma3.siw.spring.model.Genere;
 import it.uniroma3.siw.spring.service.GenereService;
 
 @Controller
@@ -14,6 +18,8 @@ public class GenereController
 {
 	@Autowired
 	private GenereService genereService;
+	@Autowired
+	private GenereValidator genereValidator;
 	
 	@RequestMapping("/generi")
 	public String generi() 
@@ -33,5 +39,24 @@ public class GenereController
 	{
 		model.addAttribute("opere",this.genereService.getGenere(id));
 		return "opereGenere.html";
+	}
+	
+	@RequestMapping(value="/inserisciGenere",method=RequestMethod.GET)
+	public String inserisciGenere(Model model)
+	{
+		model.addAttribute("genere", new Genere());
+		return"/inserisciGenere";
+	}
+	
+	@RequestMapping(value="/inserisciGenere",method=RequestMethod.POST)
+	public String aggiungi(@ModelAttribute("genere") Genere genere,Model model,BindingResult br)
+	{
+		this.genereValidator.validate(genere, br);
+		if(!br.hasErrors())
+		{
+			this.genereService.saveGenere(genere);
+			return"redirect:/inserisciGenere";
+		}
+		return"redirect:/default";
 	}
 }

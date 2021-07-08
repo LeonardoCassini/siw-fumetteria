@@ -28,12 +28,11 @@ img
 .carrello
 {
   width:30px;
-	height:30px;
+  height:30px;
 }
 
 nav
 {
-    border-bottom: 1px solid;
     padding-bottom: 15px;
 }
 
@@ -62,6 +61,11 @@ li > a:hover
     background-color: #953553;
 }
 
+a
+{
+	text-decoration:none;
+}
+
 ul
 {
 	list-style-type: none;
@@ -87,8 +91,7 @@ footer
 
 strong
 {
-  color: red;
-  background-color: yellow;
-  font-family:"Comic Sans MS", cursive, sans-serif;
-  font-size:large;
+  font-size:x-large;
+  color:lime;
 }
+

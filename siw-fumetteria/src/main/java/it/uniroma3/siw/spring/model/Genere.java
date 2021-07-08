@@ -1,9 +1,14 @@
 package it.uniroma3.siw.spring.model;
 
 import javax.persistence.*;
+
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Genere 
 {
 	@Id
@@ -12,34 +17,4 @@ public class Genere
 	private String tipologia;
 	@ManyToMany
 	private List <Opera> opere;
-
-	public Long getId() 
-	{
-		return id;
-	}
-
-	public String getTipologia() 
-	{
-		return tipologia;
-	}
-
-	public void setTipologia(String tipologia) 
-	{
-		this.tipologia = tipologia;
-	}
-
-	public List<Opera> getOpere() 
-	{
-		return opere;
-	}
-
-	public void setOpere(List<Opera> opere) 
-	{
-		this.opere = opere;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
 }

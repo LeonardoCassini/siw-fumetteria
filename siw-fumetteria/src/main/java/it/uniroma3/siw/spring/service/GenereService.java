@@ -42,4 +42,14 @@ public class GenereService
 	{
 		return this.genereRepository.save(genere);
 	}
+	
+	public boolean duplicato(Genere genere)
+	{
+		List<Genere> generi=this.genereRepository.findByTipologia(genere.getTipologia());
+		if(generi.size()>0)
+		{
+			return true;
+		}
+		return false;
+	}
 }

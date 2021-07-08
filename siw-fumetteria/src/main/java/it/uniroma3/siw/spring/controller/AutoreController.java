@@ -3,13 +3,15 @@ package it.uniroma3.siw.spring.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//import it.uniroma3.siw.spring.model.Autore;
-//import org.springframework.web.bind.annotation.RestController;
+import it.uniroma3.siw.spring.controller.validator.AutoreValidator;
+import it.uniroma3.siw.spring.model.Autore;
 import it.uniroma3.siw.spring.service.AutoreService;
 
 @Controller
@@ -17,6 +19,8 @@ public class AutoreController
 {
 	@Autowired
 	private AutoreService autoreService;
+	@Autowired
+	private AutoreValidator autoreValidator;
 	
 	@RequestMapping(value="/autoreStruttura")
 	public String autoreStruttura()
@@ -54,5 +58,24 @@ public class AutoreController
 			model.addAttribute("autori",this.autoreService.getAllAutori());
 		}
 		return"/autori";
+	}
+	
+	@RequestMapping(value="/inserisciAutore",method = RequestMethod.GET)
+	public String inserisciAutore(Model model)
+	{
+			model.addAttribute("autore", new Autore());
+			return"/inserisciAutore";
+	}
+	
+	@RequestMapping(value="/inserisciAutore", method=RequestMethod.POST)
+	public String aggiungi(@ModelAttribute("autore") Autore autore,Model model,BindingResult br)
+	{
+		this.autoreValidator.validate(autore,br);
+		if(!br.hasErrors())
+		{
+			this.autoreService.saveAutore(autore);
+			return "redirect:/inserisciAutore";
+		}
+		return"redirect:/default";
 	}
 }

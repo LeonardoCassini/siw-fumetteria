@@ -9,13 +9,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import it.uniroma3.siw.spring.controller.validator.CredenzialiValidator;
 import it.uniroma3.siw.spring.controller.validator.UtenteValidator;
-import it.uniroma3.siw.spring.model.Carrello;
 import it.uniroma3.siw.spring.model.Credenziali;
 import it.uniroma3.siw.spring.model.Utente;
-import it.uniroma3.siw.spring.service.CarrelloService;
 import it.uniroma3.siw.spring.service.CredenzialiService;
 import it.uniroma3.siw.spring.service.UtenteService;
 
@@ -30,8 +27,6 @@ public class AuthController
 	private UtenteValidator utenteValidator;
 	@Autowired
 	private UtenteService utenteService;
-	@Autowired
-	private CarrelloService carrelloService;
 	
 
 
@@ -39,7 +34,6 @@ public class AuthController
 	public String formRegistrazione (Model model) {
 		model.addAttribute("utente", new Utente());
 		model.addAttribute("credenziali", new Credenziali());
-		model.addAttribute("carrello", new Carrello());
 		return "/registrazione";
 	}
 
@@ -57,7 +51,7 @@ public class AuthController
 	}
 
 	@RequestMapping(value = "/default", method = RequestMethod.GET)
-	public String defaultAfterLoginAdmin(Model model) 
+	public String defaultAfterLogin(Model model) 
 	{
 
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -69,25 +63,11 @@ public class AuthController
 		return "/homePage";
 	}
 
-//	@RequestMapping(value = "/default", method = RequestMethod.GET)
-//	public String defaultAfterLoginCliente(Model model) 
-//	{
-//
-//		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		Credenziali credentials = credentialsService.getCredentials(userDetails.getUsername());
-//		if (credentials.getRole().equals(Credenziali.DEFAULT_ROLE)) 
-//		{
-//			return "/cliente";
-//		}
-//		return "/homePage";
-//	}
-
 	@RequestMapping(value = { "/registrazione" }, method = RequestMethod.POST)
 	public String registerUser(@ModelAttribute("utente") Utente utente, 
 			BindingResult utenteBr, 
-			@ModelAttribute("credenziali") Credenziali credenziali, 
+			@ModelAttribute("credenziali") Credenziali credenziali,
 			BindingResult credenzialiBr,
-			@ModelAttribute("carrello") Carrello carrello, 
 			Model model) 
 	{
 
@@ -98,12 +78,10 @@ public class AuthController
 		if(!utenteBr.hasErrors() && ! credenzialiBr.hasErrors()) 
 		{
 			utente.setEmail(credenziali.getUsername());
-			credenziali.setCliente(utente);
-			carrello.setCliente(utente);
+			credenziali.setUtente(utente);
 			utenteService.saveCliente(utente);
-			carrelloService.saveCarrello(carrello);
 			credentialsService.saveCredentials(credenziali);
-			return "homePage";
+			return "/homePage";
 		}
 		return "/registrazione";
 	}

@@ -65,19 +65,13 @@ public class OperaService
 		return result;
 	}
 	
-	
-//	public List<Opera> getStrutturaGenere(String struttura,List<Opera> opere)
-//	{
-//		List<Opera> result = new ArrayList<Opera>();
-//		Iterator<Opera> it=opere.iterator();
-//		while(it.hasNext())
-//		{
-//			Opera opera=it.next();
-//			if(opera.getStruttura().equals(struttura))
-//			{
-//				result.add(opera);
-//			}
-//		}
-//		return result;
-//	}
+	public boolean duplicato(Opera opera)
+	{
+		List<Opera> result=this.operaRepository.findByNome(opera.getNome());
+		if(result.size()>0)
+		{
+			return true;
+		}
+		return false;
+	}
 }

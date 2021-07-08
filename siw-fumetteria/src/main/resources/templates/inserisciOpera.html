@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=generi)">
+</head>
+<body>
+	<nav>
+	<ul>
+	<li><strong>Admin</strong></li>
+	<li><a th:href="@{/default}">Home</a></li>
+	<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+	</ul>
+	</nav>
+
+</body>
+</html>

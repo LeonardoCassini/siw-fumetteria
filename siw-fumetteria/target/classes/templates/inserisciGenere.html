@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=generi)">
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+	</nav>
+	<form class="centrale" th:action="@{/inserisciGenere}" method="POST"
+		th:object="${genere}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Genere</span>
+				<div>
+					<input type="text" th:field="*{tipologia}" /> <span
+						th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}"></span>
+				</div>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>
