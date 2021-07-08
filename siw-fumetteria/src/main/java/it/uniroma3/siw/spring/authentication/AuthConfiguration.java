@@ -30,7 +30,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			// chiunque può accedere alle seguenti pagine
 			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}").permitAll()
 			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/filtraOpereGenere","/css/**","/images/**").permitAll()
-			.antMatchers(HttpMethod.GET, "/registrazione", "/login","/cliente","/genereStruttura").permitAll()
+			.antMatchers(HttpMethod.GET, "/registrazione", "/login","/cliente","/genereStruttura", "/default", "/cliente/{username}").permitAll()
 			//.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}","/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/filtraOpereGenere", "/registrazione", "/login","/carrello","/css/**","/images/**").permitAll()
 			// chiunque può mandare richieste di post per il login e la registrazione
 			.antMatchers(HttpMethod.POST, "/login", "/registrazione").permitAll()
@@ -43,7 +43,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			.and().formLogin()
 			.loginPage("/login")
 			// se il login ha successo si viene reindirizzati al path /homePage
-			.defaultSuccessUrl("/homePage")
+			.defaultSuccessUrl("/default")
 			// logout
 			.and().logout()
 			// logout attivato con una richiesta Get a "/logout"
@@ -62,9 +62,9 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 				// usa l'autowired datasource per accedere alle credenziali salvate
 				.dataSource(this.datasource)
 				// ottiene email e ruolo dell'utente
-				.authoritiesByUsernameQuery("SELECT email, role FROM credenziali WHERE email=?")
+				.authoritiesByUsernameQuery("SELECT username, role FROM credenziali WHERE username=?")
 				// ottiene email, password e un boolean flag per specificare se l'utente è attivo o meno
-				.usersByUsernameQuery("SELECT email, password, 1 as enabled FROM credenziali WHERE email=?");
+				.usersByUsernameQuery("SELECT username, password, 1 as enabled FROM credenziali WHERE username=?");
 	}
 	//Metodo per criptare de decriptare la password
 	@Bean

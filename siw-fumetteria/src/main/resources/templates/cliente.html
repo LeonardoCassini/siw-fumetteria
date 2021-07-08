@@ -4,8 +4,16 @@
 	th:replace="fragments/strutturaBase.html :: headerfiles(title=operaGenere)">
 </head>
 <body>
-	<!--  <ul th:object="${utente}">
-	<li></li>
-	</ul>-->
+<div th:object="${credenziali}" th:action="@{/cliente/{username}(username=${credenziali.username})}">
+	
+	<ul th:object="${utente}">
+	asdasd
+	<li th:text="*{email}"> </li>
+	<li th:text="*{nome}"> </li>
+	<li th:text="*{cognome}"> </li>
+	<li th:text="*{indirizzo}"> </li>
+	
+	</ul>
+</div>
 </body>
 </html>

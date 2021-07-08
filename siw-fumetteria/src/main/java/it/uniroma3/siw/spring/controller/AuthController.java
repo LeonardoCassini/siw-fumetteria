@@ -15,7 +15,9 @@ import it.uniroma3.siw.spring.controller.validator.UtenteValidator;
 import it.uniroma3.siw.spring.model.Carrello;
 import it.uniroma3.siw.spring.model.Credenziali;
 import it.uniroma3.siw.spring.model.Utente;
+import it.uniroma3.siw.spring.service.CarrelloService;
 import it.uniroma3.siw.spring.service.CredenzialiService;
+import it.uniroma3.siw.spring.service.UtenteService;
 
 @Controller
 public class AuthController 
@@ -23,9 +25,14 @@ public class AuthController
 	@Autowired
 	private CredenzialiService credentialsService;
 	@Autowired
+	private CredenzialiValidator credenzialiValidator;
+	@Autowired
 	private UtenteValidator utenteValidator;
 	@Autowired
-	private CredenzialiValidator credenzialiValidator;
+	private UtenteService utenteService;
+	@Autowired
+	private CarrelloService carrelloService;
+	
 
 
 	@RequestMapping(value = "/registrazione", method = RequestMethod.GET)
@@ -54,7 +61,7 @@ public class AuthController
 	{
 
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		Credenziali credentials = credentialsService.getCredentials(userDetails.getUsername());
+		Credenziali credentials = credentialsService.getCredenzialiByUsername(userDetails.getUsername());
 		if (credentials.getRole().equals(Credenziali.ADMIN_ROLE)) 
 		{
 			return "/admin/adminHome.html";
@@ -92,8 +99,11 @@ public class AuthController
 		{
 			utente.setEmail(credenziali.getUsername());
 			credenziali.setCliente(utente);
+			carrello.setCliente(utente);
+			utenteService.saveCliente(utente);
+			carrelloService.saveCarrello(carrello);
 			credentialsService.saveCredentials(credenziali);
-			return "redirect:/homePage";
+			return "homePage";
 		}
 		return "/registrazione";
 	}

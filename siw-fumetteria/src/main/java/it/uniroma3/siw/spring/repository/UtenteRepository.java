@@ -5,4 +5,6 @@ import it.uniroma3.siw.spring.model.Utente;
 
 public interface UtenteRepository extends CrudRepository<Utente, Long>
 {
+
+	public Utente findByEmail(String username);
 }

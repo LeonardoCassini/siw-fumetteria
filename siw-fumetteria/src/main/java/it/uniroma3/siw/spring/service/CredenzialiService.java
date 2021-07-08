@@ -20,13 +20,13 @@ public class CredenzialiService {
 		protected CredenzialiRepository credentialsRepository;
 		
 		@Transactional
-		public Credenziali getCredenziali(Long id) {
+		public Credenziali getCredenzialiById(Long id) {
 			Optional<Credenziali> result = this.credentialsRepository.findById(id);
 			return result.orElse(null);
 		}
 		
 		@Transactional
-		public Credenziali getCredentials(String username) {
+		public Credenziali getCredenzialiByUsername(String username) {
 			Optional<Credenziali> result = this.credentialsRepository.findByUsername(username);
 			return result.orElse(null);
 		}

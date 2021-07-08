@@ -41,4 +41,9 @@ public class UtenteService
 			result.add(cliente);
 		return result;
 	}
+
+	public Utente getClienteFromUsername(String email) {
+		
+		return this.utenteRepository.findByEmail(email);
+	}
 }

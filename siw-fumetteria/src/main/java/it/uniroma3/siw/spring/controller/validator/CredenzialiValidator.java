@@ -35,7 +35,7 @@ public class CredenzialiValidator implements Validator{
             errors.rejectValue("username", "required");
         else if (email.length() < MIN_EMAIL_LENGTH || email.length() > MAX_EMAIL_LENGTH)
             errors.rejectValue("username", "size");
-        else if (this.credenzialiService.getCredentials(email) != null)
+        else if (this.credenzialiService.getCredenzialiByUsername(email) != null)
             errors.rejectValue("username", "duplicate");
 
         if (password.isEmpty())
