@@ -14,7 +14,9 @@ public class Opera
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
-	@ManyToMany(mappedBy="opere")
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@JoinTable(name = "genere_opere", joinColumns = { @JoinColumn(name = "opera_id") }, inverseJoinColumns = {
+            @JoinColumn(name = "genere_id") })
 	private List<Genere> genere;
 	private String sinossi;
 	private String target;

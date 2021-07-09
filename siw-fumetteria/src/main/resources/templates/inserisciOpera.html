@@ -11,6 +11,88 @@
 	<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
 	</ul>
 	</nav>
+	
+	<form class="centrale" th:action="@{/inserisciOpera}" method="POST"
+		th:object="${opera}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Nome</span>
+				<div>
+					<input type="text" th:field="*{nome}" /> <span
+						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Stato</span>
+				<div>
+					<input type="text" th:field="*{stato}" /> <span
+						th:if="${#fields.hasErrors('stato')}" th:errors="*{stato}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Nazionalità</span>
+				<div>
+					<input type="text" th:field="*{nazionalita}" /> <span
+						th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Sinossi</span>
+				<div>
+					<textarea th:field="*{sinossi}" /> <span
+						th:if="${#fields.hasErrors('sinossi')}" th:errors="*{sinossi}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Target</span>
+				<div>
+					<input type="text" th:field="*{target}" /> <span
+						th:if="${#fields.hasErrors('target')}" th:errors="*{target}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Immagine</span>
+				<div>
+					<input type="text" th:field="*{immagine}" /> <span
+						th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Struttura</span>
+				<div>
+					<input type="text" th:field="*{struttura}" /> <span
+						th:if="${#fields.hasErrors('struttura')}" th:errors="*{struttura}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Autore</span>
+				<div >
+					<ul>
+						<li th:each="autore : ${autori}">
+						<input type="checkbox" th:text="|${autore.nome} ${autore.cognome}|" th:field="*{autore}" th:value="${autore.id}" />
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div>
+				<span>Genere</span>
+				<div>
+					<ul>
+						<li th:each="genere : ${generi}">
+						<input type="checkbox" th:text="${genere.tipologia}" th:field="*{genere}" th:value="${genere.id}" />
+						</li>
+					</ul>
+
+				</div>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
 
 </body>
 </html>
