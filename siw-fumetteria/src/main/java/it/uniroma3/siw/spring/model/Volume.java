@@ -1,6 +1,9 @@
 package it.uniroma3.siw.spring.model;
 
 import javax.persistence.*;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.*;
@@ -22,6 +25,7 @@ public class Volume
 	private String nomeCopertina;
 	private String copertina;
 	private int copie;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate pubblicazione;
 	private boolean ristampa;
 	@ManyToOne

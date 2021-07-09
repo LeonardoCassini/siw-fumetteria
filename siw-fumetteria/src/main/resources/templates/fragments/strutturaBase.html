@@ -20,9 +20,9 @@
 			<li><a th:href="@{/carrello}"> 
 			<img class="carrello" src="/images/carrello.png" alt="carrello">
 			</a></li>
-			<li><a th:text="${#authentication.name}" th:href="@{'/cliente' + '/' +${#authentication.name}}">Cliente</a></li>
-			<li><a th:href="@{/logout}">Logout</a></li>
-			<li class="posDestra"><a th:href="@{/login}">Login</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+			<li  th:if="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:text="Profilo" th:href="@{'/cliente' + '/' +${#authentication.name}}">Cliente</a></li>
+			<li  th:unless="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:href="@{/login}">Login</a></li>
 			
 			<!--  <li class="posDestra"><input type="search" name="ricerca"
 				placeholder="Cerca..." /> <input type="submit" value="cerca" /></li>-->

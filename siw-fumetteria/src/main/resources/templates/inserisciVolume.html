@@ -5,12 +5,106 @@
 </head>
 <body>
 	<nav>
-	<ul>
-	<li><strong>Admin</strong></li>
-	<li><a th:href="@{/default}">Home</a></li>
-	<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
-	</ul>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
 	</nav>
+	<form class="centrale" th:action="@{/inserisciVolume}" method="POST"
+		th:object="${volume}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Isbn</span>
+				<div>
+					<input type="text" th:field="*{isbn}"> <span
+						th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}"></span>
+				</div>
+			</div>
+			<div>
+				<span>titolo</span>
+				<div>
+					<input type="text" th:field="*{titolo}"> <span
+						th:if="${#fields.hasErrors('titolo')}" th:errors="*{titolo}"></span>
+				</div>
+			</div>
+			<div>
+				<span>numero volume</span>
+				<div>
+					<input type="text" th:field="*{numVolume}"> <span
+						th:if="${#fields.hasErrors('numVolume')}" th:errors="*{numVolume}"></span>
+				</div>
+			</div>
+			<div>
+				<span>sinossi</span>
+				<div>
+					<textarea th:field="*{sinossi}"></textarea> <span
+						th:if="${#fields.hasErrors('sinossi')}" th:errors="*{sinossi}"></span>
+				</div>
+			</div>
+			<div>
+				<span>prezzo</span>
+				<div>
+					<input type="text" th:field="*{prezzo}"> <span
+						th:if="${#fields.hasErrors('prezzo')}" th:errors="*{prezzo}"></span>
+				</div>
+			</div>
+			<div>
+				<span>nome immangine Copertina</span>
+				<div>
+					<input type="text" th:field="*{nomeCopertina}"> <span
+						th:if="${#fields.hasErrors('nomeCopertina')}" th:errors="*{nomeCopertina}"></span>
+				</div>
+			</div>
+			<div>
+				<span>copertina variant o standard</span>
+				<div>
+					<input type="text" th:field="*{copertina}"> <span
+						th:if="${#fields.hasErrors('copertina')}" th:errors="*{copertina}"></span>
+				</div>
+			</div>
+			<div>
+				<span>numero di copie</span>
+				<div>
+					<input type="text" th:field="*{copie}"> <span
+						th:if="${#fields.hasErrors('copie')}" th:errors="*{copie}"></span>
+				</div>
+			</div>
+			<div>
+				<span>data di pubblicazione</span>
+				<div>
+					<input type="date" th:field="*{pubblicazione}"> <span
+						th:if="${#fields.hasErrors('pubblicazione')}" th:errors="*{pubblicazione}"></span>
+				</div>
+			</div>
+			<div>
+				<span>ristampa</span>
+				<div>
+					<input type="text" th:field="*{ristampa}"> <span
+						th:if="${#fields.hasErrors('ristampa')}" th:errors="*{ristampa}"></span>
+				</div>
+			</div>
+			<div>
+				<span>Opera di cui fa parte</span>
+				<div>
+					<select th:field="*{opera.id}">
+					<option value="0">opere</option>
+					<option 
+					    th:each="opera : ${opere}" 
+					    th:value="${opera.id}"
+						th:selected="${opera.id eq lastselected}"
+						th:text="|${opera.nome}|"></option>
 
+				</select>
+				</div>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
 </body>
 </html>
