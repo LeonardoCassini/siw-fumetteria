@@ -80,6 +80,7 @@ section
 .posDestra
 {
   float: right;
+  display: block;
 }
 
 footer
@@ -87,6 +88,14 @@ footer
   background:black;
   color:white;
   height: auto;
+}
+
+.centrale
+{
+	position:relative;
+	left:45%;
+	right:45%;
+	bottom:50%;
 }
 
 strong

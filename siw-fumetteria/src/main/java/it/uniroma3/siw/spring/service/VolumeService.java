@@ -1,5 +1,6 @@
 package it.uniroma3.siw.spring.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,4 +26,15 @@ public class VolumeService
 	{
 		return this.volumeRepository.save(volume);
 	}
+	
+	public  boolean duplicato(Volume volume)
+	{
+		List<Volume>result=this.volumeRepository.findByIsbn(volume.getIsbn());
+		if(result.size()>0)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 }
