@@ -123,4 +123,39 @@ public class OperaController
 		}
 		return"redirect:/default";
 	}
+	
+	@RequestMapping(value="/modificaOpera",method=RequestMethod.GET)
+	public String iniziaModificaOpera(Model model)
+	{
+		model.addAttribute("opere", this.operaService.getAllOpere());
+		return"/modificaOpera";
+	}
+	
+	@RequestMapping(value="/cancOpera/{id}",method=RequestMethod.POST)
+	public String cancellaOpera(@PathVariable("id")Long id)
+	{
+		this.operaService.cancella(id);
+		return"redirect:/modificaOpera";
+	}
+	
+	@RequestMapping(value="/updOpera/{id}",method=RequestMethod.GET)
+	public String getModificaOpera(@PathVariable("id")Long id,Model model)
+	{
+		model.addAttribute("opera",this.operaService.getOpera(id));
+		model.addAttribute("generi",this.genereService.getAllGeneri());
+		model.addAttribute("autori",this.autoreService.getAllAutori());
+		return"/updOpera";
+	}
+	
+	@RequestMapping(value="/updOpera/{id}",method=RequestMethod.POST)
+	public String modificaOpera(@ModelAttribute("opera")Opera opera,Model model,BindingResult br)
+	{
+		this.operaValidator.validate(opera, br);
+		if(!br.hasErrors())
+		{
+			this.operaService.saveOpera(opera);
+			return"redirect:/modificaOpera";
+		}
+		return"redirect:/default";
+	}
 }

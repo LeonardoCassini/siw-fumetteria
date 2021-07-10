@@ -59,4 +59,36 @@ public class GenereController
 		}
 		return"redirect:/default";
 	}
+	
+	@RequestMapping(value="/modificaGenere",method=RequestMethod.GET)
+	public String iniziaModificaGenere(Model model)
+	{
+		model.addAttribute("generi",this.genereService.getAllGeneri());
+		return"/modificaGenere";
+	}
+	
+	@RequestMapping(value="/cancGenere/{id}",method=RequestMethod.POST)
+	public String cancellaGenere(@PathVariable("id")Long id)
+	{
+		this.genereService.cancella(id);
+		return "redirect:/modificaGenere";
+	}
+	@RequestMapping(value="/updGenere/{id}",method=RequestMethod.GET)
+	public String getModificaGenere(@PathVariable("id")Long id,Model model)
+	{
+		model.addAttribute("genere",this.genereService.getGenere(id));
+		return"/updGenere";
+	}
+	
+	@RequestMapping(value="/updGenere/{id}",method=RequestMethod.POST)
+	public String modificaGenere(@ModelAttribute("genere") Genere genere,Model model,BindingResult br)
+	{
+		this.genereValidator.validate(genere, br);
+		if(!br.hasErrors())
+		{
+			this.genereService.saveGenere(genere);
+			return"redirect:/modificaGenere";
+		}
+		return"redirect:/default";
+	}
 }

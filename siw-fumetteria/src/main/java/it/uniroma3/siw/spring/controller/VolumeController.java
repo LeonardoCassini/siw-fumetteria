@@ -58,4 +58,38 @@ public class VolumeController
 		}
 		return"redirect:/default";
 	}
+	
+	@RequestMapping(value="/modificaVolume",method=RequestMethod.GET)
+	public String iniziaModificaVolume(Model model)
+	{
+		model.addAttribute("volumi",this.volumeService.getAllVolumi());
+		return"/modificaVolume";
+	}
+	
+	@RequestMapping(value="/cancVolume/{id}",method=RequestMethod.POST)
+	public String cancellaVolume(@PathVariable("id")String id)
+	{
+		this.volumeService.cancella(id);
+		return"redirect:/modificaVolume";
+	}
+	
+	@RequestMapping(value="/updVolume/{isbn}",method=RequestMethod.GET)
+	public String getModificaVolume(@PathVariable("isbn")String isbn,Model model)
+	{
+		model.addAttribute("volume",this.volumeService.getVolume(isbn));
+		model.addAttribute("opere",this.operaService.getAllOpere());
+		return"/updVolume";
+	}
+	
+	@RequestMapping(value="/updVolume/{isbn}",method=RequestMethod.POST)
+	public String modificaVolume(@ModelAttribute("volume") Volume volume,Model model,BindingResult br)
+	{
+		this.volumeValidator.validate(volume, br);
+		if(!br.hasErrors())
+		{
+			this.volumeService.saveVolume(volume);
+			return "redirect:/modificaVolume";
+		}
+		return"redirect:/default";
+	}
 }

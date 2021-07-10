@@ -74,4 +74,9 @@ public class OperaService
 		}
 		return false;
 	}
+	
+	public void cancella(Long id)
+	{
+		this.operaRepository.deleteById(id);
+	}
 }

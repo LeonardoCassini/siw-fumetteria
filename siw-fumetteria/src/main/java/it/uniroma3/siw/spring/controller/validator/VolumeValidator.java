@@ -25,6 +25,7 @@ public class VolumeValidator implements Validator
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"isbn","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"titolo","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"numVolume","required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"pagine","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"sinossi","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"prezzo","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"nomeCopertina","required");
@@ -33,6 +34,7 @@ public class VolumeValidator implements Validator
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"pubblicazione","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"ristampa","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"opera","required");
+		
 		
 		if(!errors.hasErrors())
 		{

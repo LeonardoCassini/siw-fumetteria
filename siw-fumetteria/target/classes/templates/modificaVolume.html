@@ -1,10 +1,28 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=generi)">
 </head>
 <body>
-
+	<nav>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+	</nav>
+	<ul>
+		<li th:object="${volumi}" th:each="volumi : ${volumi}">
+		<div th:text="*{titolo}"></div>
+			<form class="centrale" action="#" th:action="@{/cancVolume/{isbn} (isbn=*{isbn})}" method="post">
+				<input type="hidden" value="Cancella" />
+				<button type="submit" value="Cancella">Cancella</button>
+			</form>
+			<form class="centrale" action="#" th:action="@{/updVolume/{isbn} (isbn=*{isbn})}" method="get">
+				<input type="hidden" value="modifica" />
+				<button type="submit" value="modifica">Modifica</button>
+			</form>
+		</li>
+	</ul>
 </body>
 </html>

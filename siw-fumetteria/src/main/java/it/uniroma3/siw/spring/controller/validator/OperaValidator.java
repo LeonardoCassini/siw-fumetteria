@@ -21,7 +21,7 @@ public class OperaValidator implements Validator
 	@Override
 	public void validate(Object o, Errors errors)
 	{
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"tipologia","required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"nome","required");
 
 		if(!errors.hasErrors())
 		{

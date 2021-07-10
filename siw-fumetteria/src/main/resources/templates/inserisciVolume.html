@@ -39,6 +39,13 @@
 				</div>
 			</div>
 			<div>
+				<span>Numero di pagine</span>
+				<div>
+					<input type="text" th:field="*{pagine}"> <span
+						th:if="${#fields.hasErrors('pagine')}" th:errors="*{pagine}"></span>
+				</div>
+			</div>
+			<div>
 				<span>sinossi</span>
 				<div>
 					<textarea th:field="*{sinossi}"></textarea> <span

@@ -78,4 +78,37 @@ public class AutoreController
 		}
 		return"redirect:/default";
 	}
+	
+	@RequestMapping(value="/modificaAutore", method=RequestMethod.GET)
+	public String iniziaModificaAutore(Model model)
+	{
+		model.addAttribute("autori", this.autoreService.getAllAutori());
+		return"/modificaAutore";
+	}
+	
+	@RequestMapping(value="/cancAutore/{id}", method=RequestMethod.POST)
+	public String cancellaAutore(@PathVariable("id")Long id)
+	{
+		this.autoreService.cancella(id);
+		return"redirect:/modificaAutore";
+	}
+	
+	@RequestMapping(value="/updAutore/{id}", method=RequestMethod.GET)
+	public String getmodificaAutore(@PathVariable("id")Long id,Model model)
+	{
+		model.addAttribute("autore", this.autoreService.getAutore(id));;
+		return"/updAutore";
+	}
+	
+	@RequestMapping(value="/updAutore/{id}", method=RequestMethod.POST)
+	public String modificaAutore(@ModelAttribute("autore") Autore autore,Model model,BindingResult br)
+	{
+		this.autoreValidator.validate(autore,br);
+		if(!br.hasErrors())
+		{
+			this.autoreService.saveAutore(autore);
+			return "redirect:/modificaAutore";
+		}
+		return"redirect:/default";
+	}
 }

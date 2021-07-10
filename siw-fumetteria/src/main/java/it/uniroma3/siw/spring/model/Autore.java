@@ -20,6 +20,6 @@ public class Autore
 	private String cognome;
 	@Column(nullable=false)
 	private int struttura;
-	@OneToMany(mappedBy="autore")
+	@OneToMany(mappedBy="autore", cascade=CascadeType.REMOVE)
 	private List<Opera> opere;
 }

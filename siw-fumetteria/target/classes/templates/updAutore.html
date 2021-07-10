@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=generi)">
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+	</nav>
+	<form class="centrale" th:action="@{/updAutore/{id} (id=*{id})}" method="POST"
+		th:object="${autore}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
+		</div>
+		<div>
+			<div>
+				<span>Nome</span>
+				<div>
+					<input type="text" th:field="*{nome}" /> <span
+						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+				</div>
+			</div>
+			<div>
+				<span>cognome</span>
+				<div>
+					<input type="text" th:field="*{cognome}" /> <span
+						th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
+				</div>
+			</div>
+			<div>
+				<select th:field="*{struttura}">
+					<option value="0">Struttura pagina</option>
+					<option th:value="77" th:selected="manga" th:text="manga">
+					</option>
+					<option th:value="67" th:selected="comic" th:text="comic">
+					</option>
+				</select>
+			</div>
+			<div>
+				<span><button type="submit">Invio</button></span>
+			</div>
+		</div>
+	</form>
+</body>
+</html>

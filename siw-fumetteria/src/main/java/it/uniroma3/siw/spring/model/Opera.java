@@ -14,7 +14,7 @@ public class Opera
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.DETACH})
 	@JoinTable(name = "genere_opere", joinColumns = { @JoinColumn(name = "opera_id") }, inverseJoinColumns = {
             @JoinColumn(name = "genere_id") })
 	private List<Genere> genere;
@@ -26,6 +26,6 @@ public class Opera
 	private String immagine;
 	@ManyToOne
 	private Autore autore;
-	@OneToMany(mappedBy="opera")
+	@OneToMany(mappedBy="opera",cascade=CascadeType.REMOVE)
 	private List<Volume> volumi;
 }

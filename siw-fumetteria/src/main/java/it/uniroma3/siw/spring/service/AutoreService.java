@@ -61,4 +61,9 @@ public class AutoreService
 			result.add(autori);
 		return result;
 	}
+	
+	public void cancella(Long id)
+	{
+		this.autoriRepository.deleteById(id);
+	}
 }

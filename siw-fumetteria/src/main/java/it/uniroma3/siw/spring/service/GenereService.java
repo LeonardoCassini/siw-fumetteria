@@ -52,4 +52,9 @@ public class GenereService
 		}
 		return false;
 	}
+	
+	public void cancella(Long id)
+	{
+		this.genereRepository.deleteById(id);
+	}
 }

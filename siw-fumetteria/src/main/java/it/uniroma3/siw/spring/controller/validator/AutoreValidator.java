@@ -22,7 +22,6 @@ public class AutoreValidator implements Validator
 	public void validate(Object o, Errors errors)
 	{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"nome","required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"cognome","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"struttura","required");
 		
 		if(!errors.hasErrors())

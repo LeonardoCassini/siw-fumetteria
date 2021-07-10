@@ -11,7 +11,7 @@
 			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
 		</ul>
 	</nav>
-	<form class="centrale" th:action="@{/inserisciVolume}" method="POST"
+	<form class="centrale" th:action="@{/updVolume/{isbn} (isbn=*{isbn})}" method="POST"
 		th:object="${volume}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
