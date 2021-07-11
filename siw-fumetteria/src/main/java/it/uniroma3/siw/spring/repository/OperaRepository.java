@@ -10,4 +10,6 @@ public interface OperaRepository extends CrudRepository <Opera, Long>
 	public List<Opera> findByStruttura(String struttura);
 	
 	public List<Opera> findByNome(String nome);
+	
+	//public List<Opera> esiste (String )
 }

@@ -3,11 +3,14 @@ package it.uniroma3.siw.spring.model;
 import javax.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
+@ToString(exclude={"genere","autore","volumi"})
 public class Opera 
 {
 	@Id
