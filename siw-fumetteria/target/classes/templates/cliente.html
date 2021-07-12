@@ -10,11 +10,13 @@
 <div th:object="${credenziali}">
 	
 	<ul th:object="${credenziali.utente}">
-	<li th:text="*{email}"> </li>
-	<li th:text="*{nome}"> </li>
-	<li th:text="*{cognome}"> </li>
-	<li th:text="*{indirizzo}"> </li>
+	<li>Email: <span th:text="*{email}"/> </li>
+	<li>Nome: <span th:text="*{nome}"> </li>
+	<li>Cognome: <span th:text="*{cognome}"> </li>
+	<li>Indirizzo: <span th:text="*{indirizzo}"> </li>
+	<li>Data di nascita: <span th:text="*{dataNascita}"> </li>
 	</ul>
+	<div><a th:href="@{'/updCliente' + '/' + *{id}}">Modifila le informazioni</a></div>
 </div>
 </body>
 </html>

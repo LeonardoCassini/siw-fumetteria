@@ -24,7 +24,7 @@ public class Credenziali
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private String username;
 	
 	@Column(nullable = false)
@@ -35,4 +35,6 @@ public class Credenziali
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Utente utente;
+	
+	
 }

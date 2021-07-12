@@ -45,6 +45,13 @@
             <td th:if="${#fields.hasErrors('utente.indirizzo')}"
                 th:errors="${utente.indirizzo}" th:style="'color:red'"></td>
         </tr>
+         <tr>
+            <td>Data di nascita</td>
+            <td><input type="date" required
+                       th:field="${utente.dataNascita}"/></td>
+            <td th:if="${#fields.hasErrors('utente.dataNascita')}"
+                th:errors="${utente.dataNascita}" th:style="'color:red'"></td>
+        </tr>
         <tr>
             <td>
                 <button type="submit">Registra</button>

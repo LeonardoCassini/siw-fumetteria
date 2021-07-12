@@ -43,5 +43,16 @@ public class CredenzialiValidator implements Validator{
         else if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH)
             errors.rejectValue("password", "size");
 	}
+	
+	public void validateModifica(Object o, Errors errors) {
+		Credenziali credenziali = (Credenziali) o;
+		String password = credenziali.getPassword().trim();
+		
+		
+        if (password.isEmpty())
+            errors.rejectValue("password", "required");
+        else if (password.length() < MIN_PASSWORD_LENGTH || password.length() > MAX_PASSWORD_LENGTH)
+            errors.rejectValue("password", "size");
+	}
 
 }
