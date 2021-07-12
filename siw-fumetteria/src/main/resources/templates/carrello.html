@@ -9,21 +9,27 @@
 	</nav>
 
 	<ul>
-		<li class="centrale" th:if="${volumeCarrello}" th:object="${volumeCarrello}"
-			th:each="volume:${volumeCarrello}">
+		<li class="centrale" th:if="${volumeCarrello}"
+			th:object="${volumeCarrello}" th:each="volume:${volumeCarrello}">
 			<div>
-			<a href="volume.html" th:href="@{'/volume' + '/' + ${volume.isbn}}">
-				<img class="supermini"
-					th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}" /></a>
+				<a href="volume.html" th:href="@{'/volume' + '/' + ${volume.isbn}}">
+					<img class="supermini"
+					th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}" />
+				</a>
 				<div th:text="${volume.titolo}+' '+${volume.prezzo}+'&#8364'"></div>
-				<a th:href="@{/rimuovi/{isbn}}"><img class="cestino" th:src="@{/images/cestino.png}"></a>
+				<form action="#"
+					th:action="@{/rimuovi/{isbn} (isbn=${volume.isbn})}" method="post">
+					<button type="submit">rimuovi</button>
+				</form>
 			</div> <br>
 		</li>
 		<li th:unless="${volumeCarrello}"
-			th:text="'Il carrello &eacute vuoto'">
+			th:text="'Il carrello &eacute vuoto'"></li>
 	</ul>
-	<form class="centrale" action="#" th:action="@{/compra}"  method="post">
-	<button type="submit" value="Compra">Compra</button>
+	<div class="centrale"th:text="'Totale: '+${totale}+'&#8364'"></div>
+	<form th:if="${volumeCarrello}" class="centrale" action="#"
+		th:action="@{/compra}" method="post">
+		<button type="submit" value="Compra">Compra</button>
 	</form>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>
