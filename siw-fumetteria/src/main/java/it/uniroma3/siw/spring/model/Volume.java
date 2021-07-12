@@ -30,6 +30,7 @@ public class Volume
 	private boolean ristampa;
 	@ManyToOne
 	private Opera opera;
-	@ManyToMany
+	@ManyToMany(cascade=CascadeType.DETACH)
+	@JoinTable(name="volume_ordini", joinColumns= {@JoinColumn(name="volumi_isbn")}, inverseJoinColumns= {@JoinColumn(name="ordini_id")})
 	private List <Ordine> ordini;
 }

@@ -28,7 +28,6 @@ public class VolumeValidator implements Validator
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"pagine","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"sinossi","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"prezzo","required");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"nomeCopertina","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"copertina","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"copie","required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"pubblicazione","required");

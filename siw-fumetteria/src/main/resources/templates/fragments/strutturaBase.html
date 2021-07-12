@@ -17,7 +17,7 @@
 			<li><a th:href="@{/autori}">Autori</a></li>
 			<li><a th:href="@{/opere}">Opere</a></li>
 			<li><a th:href="@{/news}">News</a></li>
-			<li><a th:href="@{/carrello}"> 
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/carrello}"> 
 			<img class="carrello" src="/images/carrello.png" alt="carrello">
 			</a></li>
 			<li th:if="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:href="@{/logout}">Logout</a></li>

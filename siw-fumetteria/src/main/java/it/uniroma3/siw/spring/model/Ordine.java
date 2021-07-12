@@ -17,7 +17,9 @@ public class Ordine
 	private Long id;
 	private LocalDateTime dataCreazione;
 	private String stato;
-	@ManyToMany
+	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST,CascadeType.DETACH})
+	@JoinTable(name="volume_ordini", joinColumns= {@JoinColumn(name="ordini_id")}, 
+	inverseJoinColumns= {@JoinColumn(name ="volumi_isbn")})
 	private List<Volume> volumi;
 	@ManyToOne
 	private Utente cliente;

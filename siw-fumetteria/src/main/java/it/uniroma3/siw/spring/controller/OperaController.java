@@ -30,12 +30,6 @@ public class OperaController
 	@Autowired
 	private ModificaOperaValidator modificaOperaValidator;
 
-	@RequestMapping("/opere")
-	public String opere() 
-	{
-		return "opere";
-	}
-
 	@RequestMapping("/opereAutore")
 	public String opereAutore()
 	{
@@ -81,29 +75,6 @@ public class OperaController
 	{
 		model.addAttribute("opere", this.operaService.getAllOpere());
 		return"/opere";
-	}
-	
-	
-	
-	@RequestMapping(value="/filtraOpereGenere",method=RequestMethod.GET,params="action=manga")
-	public String showMangaGenere(Model model)
-	{
-		model.addAttribute("opere",this.operaService.getStrutturaGenere("manga"));
-		return"/genereStruttura";
-	}
-	
-	@RequestMapping(value="/filtraOpereGenere",method=RequestMethod.GET,params="action=comic")
-	public String showComicGenere(Model model)
-	{
-		model.addAttribute("opere",this.operaService.getStrutturaGenere("comic"));
-		return"/genereStruttura";
-	}
-	
-	@RequestMapping(value="/filtraOpereGenere",method=RequestMethod.GET,params="action=nulla")
-	public String togliFiltriGenere(Model model)
-	{
-		model.addAttribute("opere", this.operaService.getAllOpere());
-		return"/genereStruttura";
 	}
 	
 	@RequestMapping(value="/inserisciOpera",method=RequestMethod.GET)

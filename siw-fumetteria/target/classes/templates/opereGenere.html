@@ -8,16 +8,6 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<div th:object="${opere}">
-	<span>Filtri</span>
-	 <form action="#" th:action="@{/filtraOpereGenere}"  method="get">
-	<label for="fumettiasiatici">Manga</label>
-	<input id="fumettiasiatici" type="checkbox" name="action" value="manga"/>
-	<label for="fumetti">Comics</label>
-	<input id="fumetti"type="checkbox" name="action" value="comic"/>
-	<div>
-	<input type="hidden" name="action" value="nulla">
-	<button type="submit">Filtra</button></div>
-	</form>
 	</div>
 	<ul>
 		<li th:each="opera : ${opere.opere}">

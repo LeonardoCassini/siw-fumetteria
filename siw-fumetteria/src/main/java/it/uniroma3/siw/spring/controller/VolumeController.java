@@ -2,8 +2,9 @@ package it.uniroma3.siw.spring.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import it.uniroma3.siw.spring.controller.validator.VolumeValidator;
 import it.uniroma3.siw.spring.model.Ordine;
+import it.uniroma3.siw.spring.model.Utente;
 import it.uniroma3.siw.spring.model.Volume;
 import it.uniroma3.siw.spring.service.OperaService;
 import it.uniroma3.siw.spring.service.OrdineService;
+import it.uniroma3.siw.spring.service.UtenteService;
 import it.uniroma3.siw.spring.service.VolumeService;
 
 
@@ -31,6 +33,8 @@ public class VolumeController
 	private VolumeValidator volumeValidator;
 	@Autowired
 	private OrdineService ordineService;
+	@Autowired
+	protected UtenteService utenteService;
 	
 	
 	@RequestMapping("/volumi")
@@ -39,10 +43,10 @@ public class VolumeController
 		return "volumi";
 	}
 	
-	@RequestMapping(value="/volume/{id}",method=RequestMethod.GET)
-	public String showVolume(@PathVariable("id") String id, Model model)
+	@RequestMapping(value="/volume/{isbn}",method=RequestMethod.GET)
+	public String showVolume(@PathVariable("isbn") String isbn, Model model)
 	{
-		model.addAttribute("volume", this.volumeService.getVolume(id));
+		model.addAttribute("volume", this.volumeService.getVolume(isbn));
 		return"volume.html";
 	}
 	
@@ -108,18 +112,27 @@ public class VolumeController
 		boolean ordineDisponibile=false;
 		for(Ordine ordine : ordiniCliente)
 		{
-			if(ordine.getStato().equals("provvisorio"))
+			if(ordine.getStato().equals("provvisorio")&&ordineDisponibile==false)
 			{
 				ordineDisponibile=true;
-				//aggiungi volume
+				ordine.getVolumi().add(this.volumeService.getVolume(isbn));
+				this.ordineService.saveOrdine(ordine);
 			}
 		}
 		
 		if(ordineDisponibile==false)
 		{
-			//crea ordine provvisorio e aggiungi volume
+			Ordine ordine=new Ordine();
+			List<Volume>volume=new ArrayList<Volume>();
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Utente cliente=this.utenteService.getClienteFromUsername(userDetails.getUsername());
+			ordine.setStato("provvisorio");
+			ordine.setCliente(cliente);
+			volume.add(this.volumeService.getVolume(isbn));
+			ordine.setVolumi(volume);
+			this.ordineService.saveOrdine(ordine);
 		}
 		
-		return"redirect:/volume/{id}";
+		return"redirect:/volume/{isbn}";
 	}
 }
