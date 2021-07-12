@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import it.uniroma3.siw.spring.controller.validator.ModificaOperaValidator;
 import it.uniroma3.siw.spring.controller.validator.OperaValidator;
 import it.uniroma3.siw.spring.model.Opera;
 import it.uniroma3.siw.spring.service.AutoreService;
@@ -25,6 +27,8 @@ public class OperaController
 	private GenereService genereService;
 	@Autowired
 	private AutoreService autoreService;
+	@Autowired
+	private ModificaOperaValidator modificaOperaValidator;
 
 	@RequestMapping("/opere")
 	public String opere() 
@@ -150,7 +154,7 @@ public class OperaController
 	@RequestMapping(value="/updOpera/{id}",method=RequestMethod.POST)
 	public String modificaOpera(@ModelAttribute("opera")Opera opera,Model model,BindingResult br)
 	{
-		this.operaValidator.validate(opera, br);
+		this.modificaOperaValidator.validate(opera, br);
 		if(!br.hasErrors())
 		{
 			this.operaService.saveOpera(opera);

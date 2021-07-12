@@ -1,5 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.controller.validator.VolumeValidator;
+import it.uniroma3.siw.spring.model.Ordine;
 import it.uniroma3.siw.spring.model.Volume;
 import it.uniroma3.siw.spring.service.OperaService;
+import it.uniroma3.siw.spring.service.OrdineService;
 import it.uniroma3.siw.spring.service.VolumeService;
 
 
@@ -24,6 +29,8 @@ public class VolumeController
 	private OperaService operaService;
 	@Autowired
 	private VolumeValidator volumeValidator;
+	@Autowired
+	private OrdineService ordineService;
 	
 	
 	@RequestMapping("/volumi")
@@ -91,5 +98,28 @@ public class VolumeController
 			return "redirect:/modificaVolume";
 		}
 		return"redirect:/default";
+	}
+	
+	@RequestMapping(value="/addCarrello/{isbn}",method=RequestMethod.POST)
+	public String AddToCart(@PathVariable("isbn") String isbn,Model model)
+	{
+		List<Ordine> ordiniCliente=new ArrayList<Ordine>();
+		ordiniCliente=this.ordineService.OrdiniUtente();
+		boolean ordineDisponibile=false;
+		for(Ordine ordine : ordiniCliente)
+		{
+			if(ordine.getStato().equals("provvisorio"))
+			{
+				ordineDisponibile=true;
+				//aggiungi volume
+			}
+		}
+		
+		if(ordineDisponibile==false)
+		{
+			//crea ordine provvisorio e aggiungi volume
+		}
+		
+		return"redirect:/volume/{id}";
 	}
 }

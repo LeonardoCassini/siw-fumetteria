@@ -1,10 +1,14 @@
 package it.uniroma3.siw.spring.service;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import it.uniroma3.siw.spring.model.Ordine;
+import it.uniroma3.siw.spring.model.Utente;
 import it.uniroma3.siw.spring.repository.OrdineRepository;
 
 @Service
@@ -12,6 +16,9 @@ public class OrdineService
 {
 	@Autowired
 	protected OrdineRepository ordineRepository;
+	@Autowired
+	protected UtenteService utenteService;
+	
 	
 	@Transactional
 	public Ordine saveOrdine(Ordine ordine)
@@ -24,5 +31,14 @@ public class OrdineService
 	{
 		Optional<Ordine> result = this.ordineRepository.findById(id);
 		return result.orElse(null);
+	}
+	
+	public List<Ordine> OrdiniUtente()
+	{
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente cliente=this.utenteService.getClienteFromUsername(userDetails.getUsername());
+		List<Ordine> ordini=this.ordineRepository.findByUtente(cliente.getId());
+		return ordini;
+		
 	}
 }

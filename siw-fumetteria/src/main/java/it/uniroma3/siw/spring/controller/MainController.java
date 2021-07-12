@@ -20,10 +20,4 @@ public class MainController
 	{
 	    return "/news";
 	}
-	
-	@RequestMapping("/carrello")
-	public String carrello()
-	{
-		return"/carrello";
-	}
 }

@@ -16,7 +16,7 @@ public class OperaValidator implements Validator
 	@Autowired
 	private OperaService operaService;
 
-	private static final Logger logger = LoggerFactory.getLogger(GenereValidator.class);
+	private static final Logger logger = LoggerFactory.getLogger(OperaValidator.class);
 
 	@Override
 	public void validate(Object o, Errors errors)
@@ -33,6 +33,7 @@ public class OperaValidator implements Validator
 			}
 		}
 	}
+	
 	@Override
 	public boolean supports(Class<?> aClass) 
 	{

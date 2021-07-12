@@ -8,16 +8,31 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<div th:object="${volume}">
-	<img class="imgadj" th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}"/>
+		<img class="imgadj"
+			th:src="@{${'/images/' + volume.nomeCopertina + '.jpg'}}" />
 		<ul>
 			<li th:text="'Isbn: '+*{isbn}"></li>
 			<li th:text="'Titolo: '+*{titolo}"></li>
 			<li th:text="'N&deg: '+*{numVolume}"></li>
-			<li th:text="'Prezzo: '+*{prezzo}+'&#8364'"></li>
 			<li th:text="'Data di publicazione: '+*{pubblicazione}"></li>
 			<li th:if="*{ristampa}" th:text="'Ristampa: Si'"></li>
 			<li th:unless="*{ristampa}" th:text="'Ristampa: No'"></li>
 			<li th:text="'N&deg copie disponibili: '+*{copie}"></li>
+			<li th:text="'Prezzo: '+*{prezzo}+'&#8364'"></li>
+			<li>
+				<form action="#" th:action="@{/addCarrello/{isbn} (isbn=*{isbn})}"
+					th:if="${#authorization.expression('isAuthenticated()')} and ${volume.copie}>0"
+					method="post">
+					<input type="hidden" value="aggiungi" />
+					<button type="submit" value="aggiungi">Aggiungi al
+						carrello</button>
+				</form>
+			</li>
+			<li>
+				<button class="disabled"
+					th:unless="${#authorization.expression('isAuthenticated()')} and ${volume.copie}>0"
+					type="submit" value="aggiungi">Aggiungi al carrello</button>
+			</li>
 			<li th:text="'Trama'"></li>
 			<li th:text="*{sinossi}"></li>
 		</ul>
