@@ -34,22 +34,22 @@ public class VolumeController
 	@Autowired
 	private OrdineService ordineService;
 	@Autowired
-	protected UtenteService utenteService;
-	
-	
+	private UtenteService utenteService;
+
+
 	@RequestMapping("/volumi")
 	public String volumi()
 	{
 		return "volumi";
 	}
-	
+
 	@RequestMapping(value="/volume/{isbn}",method=RequestMethod.GET)
 	public String showVolume(@PathVariable("isbn") String isbn, Model model)
 	{
 		model.addAttribute("volume", this.volumeService.getVolume(isbn));
 		return"volume.html";
 	}
-	
+
 	@RequestMapping(value="/inserisciVolume",method=RequestMethod.GET)
 	public String inserisciVolume(Model model)
 	{
@@ -57,7 +57,7 @@ public class VolumeController
 		model.addAttribute("opere",this.operaService.getAllOpere());
 		return"/inserisciVolume";
 	}
-	
+
 	@RequestMapping(value="/inserisciVolume",method=RequestMethod.POST)
 	public String aggiungi(@ModelAttribute("volume") Volume volume,Model model,BindingResult br)
 	{
@@ -69,21 +69,21 @@ public class VolumeController
 		}
 		return"redirect:/default";
 	}
-	
+
 	@RequestMapping(value="/modificaVolume",method=RequestMethod.GET)
 	public String iniziaModificaVolume(Model model)
 	{
 		model.addAttribute("volumi",this.volumeService.getAllVolumi());
 		return"/modificaVolume";
 	}
-	
+
 	@RequestMapping(value="/cancVolume/{id}",method=RequestMethod.POST)
 	public String cancellaVolume(@PathVariable("id")String id)
 	{
 		this.volumeService.cancella(id);
 		return"redirect:/modificaVolume";
 	}
-	
+
 	@RequestMapping(value="/updVolume/{isbn}",method=RequestMethod.GET)
 	public String getModificaVolume(@PathVariable("isbn")String isbn,Model model)
 	{
@@ -91,7 +91,7 @@ public class VolumeController
 		model.addAttribute("opere",this.operaService.getAllOpere());
 		return"/updVolume";
 	}
-	
+
 	@RequestMapping(value="/updVolume/{isbn}",method=RequestMethod.POST)
 	public String modificaVolume(@ModelAttribute("volume") Volume volume,Model model,BindingResult br)
 	{
@@ -103,23 +103,39 @@ public class VolumeController
 		}
 		return"redirect:/default";
 	}
-	
+
 	@RequestMapping(value="/addCarrello/{isbn}",method=RequestMethod.POST)
 	public String AddToCart(@PathVariable("isbn") String isbn,Model model)
 	{
 		List<Ordine> ordiniCliente=new ArrayList<Ordine>();
 		ordiniCliente=this.ordineService.OrdiniUtente();
 		boolean ordineDisponibile=false;
+		boolean uguale=false;
 		for(Ordine ordine : ordiniCliente)
 		{
 			if(ordine.getStato().equals("provvisorio")&&ordineDisponibile==false)
 			{
 				ordineDisponibile=true;
-				ordine.getVolumi().add(this.volumeService.getVolume(isbn));
-				this.ordineService.saveOrdine(ordine);
+				for(Volume volume:ordine.getVolumi())
+				{
+					if(volume.getIsbn().equals(isbn))
+					{
+						uguale=true;
+					}
+				}
+				if(uguale==false)
+				{
+					ordine.getVolumi().add(this.volumeService.getVolume(isbn));
+					ordine.setTotale(ordine.getTotale()+this.volumeService.getVolume(isbn).getPrezzo());
+					this.ordineService.saveOrdine(ordine);
+				}
+				else
+				{
+					return"erroreCarrello.html";
+				}
 			}
 		}
-		
+
 		if(ordineDisponibile==false)
 		{
 			Ordine ordine=new Ordine();
@@ -130,9 +146,10 @@ public class VolumeController
 			ordine.setCliente(cliente);
 			volume.add(this.volumeService.getVolume(isbn));
 			ordine.setVolumi(volume);
+			ordine.setTotale(this.volumeService.getVolume(isbn).getPrezzo());
 			this.ordineService.saveOrdine(ordine);
 		}
-		
+
 		return"redirect:/volume/{isbn}";
 	}
 }

@@ -20,6 +20,7 @@ public class CarrelloController
 	public String mostraCarrello(Model model)
 	{
 		model.addAttribute("volumeCarrello", this.ordineService.carrello());
+		model.addAttribute("totale",this.ordineService.getTotale());
 		return"/carrello";
 	}
 }

@@ -23,4 +23,5 @@ public class Ordine
 	private List<Volume> volumi;
 	@ManyToOne
 	private Utente cliente;
+	private float totale;
 }

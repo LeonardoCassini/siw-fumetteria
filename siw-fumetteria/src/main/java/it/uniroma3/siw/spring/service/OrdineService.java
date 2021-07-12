@@ -52,7 +52,31 @@ public class OrdineService
 		Utente cliente=this.utenteService.getClienteFromUsername(userDetails.getUsername());
 		List<Volume> volumi=new ArrayList<Volume>();
 		Ordine ordine=this.ordineRepository.findCarrello(cliente.getId());
-		volumi=ordine.getVolumi();
+		if(ordine==null)
+		{
+			volumi=null;
+		}
+		else
+		{
+			volumi=ordine.getVolumi();
+		}
 		return volumi;
+	}
+	
+	public float getTotale()
+	{
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Utente cliente=this.utenteService.getClienteFromUsername(userDetails.getUsername());
+		Ordine ordine=this.ordineRepository.findCarrello(cliente.getId());
+		float totale;
+		if(ordine==null)
+		{
+			totale=0;
+		}
+		else
+		{
+			totale=ordine.getTotale();
+		}
+		return totale;
 	}
 }

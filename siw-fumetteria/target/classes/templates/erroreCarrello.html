@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=generi)">
+</head>
+<body>
+	<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
+	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
+	</nav>
+	<strong th:text="'non &eacute possibile inserire nello stesso ordine due copie dello stesso volume'"></strong>
+	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
+</body>
+</html>
