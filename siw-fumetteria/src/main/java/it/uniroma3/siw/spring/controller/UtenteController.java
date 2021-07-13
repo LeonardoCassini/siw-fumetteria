@@ -57,19 +57,18 @@ public class UtenteController
 	public String ModificaUtente(@PathVariable("id")Long id, Model model)
 	{
         model.addAttribute("credenziali", this.credenzialiService.getCredenzialiById(id));
-        model.addAttribute("utente", this.credenzialiService.getCredenzialiById(this.credenzialiService.getCredenzialiById(id).getUtente().getId()));
 		return "/updCliente";
 	}
 	
 	@RequestMapping(value="/updCliente/{id}", method=RequestMethod.POST)
 	public String ModificaUtente(@ModelAttribute("credenziali")Credenziali credenziali,
 			Model model,
-			@ModelAttribute("utente")Utente cliente,
 			BindingResult utenteBr,
 			BindingResult credenzialiBr)
 	{
 		
 		this.modificaCredenzialiValidator.validate(credenziali, credenzialiBr);
+		
 		if(!credenzialiBr.hasErrors()) {
 			credenziali.setPassword(credenziali.getUtente().getPassword());
 			this.credenzialiService.saveCredentials(credenziali);

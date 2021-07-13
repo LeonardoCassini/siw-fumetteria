@@ -23,14 +23,17 @@
 					<input type="text" th:field="*{nome}" /> <span
 						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 				</div>
-			</div>
+			</div><br>
 			<div>
 				<span>cognome</span>
 				<div>
 					<input type="text" th:field="*{cognome}" /> <span
 						th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
 				</div>
-			</div>
+			</div><br>
+			<div>
+				<span>Struttura</span>
+				<div>
 			<div>
 				<select th:field="*{struttura}">
 					<option value="0">Struttura pagina</option>
@@ -39,7 +42,7 @@
 					<option th:value="67" th:selected="comic" th:text="comic">
 					</option>
 				</select>
-			</div>
+			</div><br>
 			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>

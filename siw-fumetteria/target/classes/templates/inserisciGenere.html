@@ -15,7 +15,7 @@
 		th:object="${genere}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
-		</div>
+		</div><br>
 		<div>
 			<div>
 				<span>Genere</span>
@@ -23,7 +23,7 @@
 					<input type="text" th:field="*{tipologia}" /> <span
 						th:if="${#fields.hasErrors('tipologia')}" th:errors="*{tipologia}"></span>
 				</div>
-			</div>
+			</div><br>
 			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>

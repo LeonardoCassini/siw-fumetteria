@@ -99,11 +99,14 @@ footer
 .centrale
 {
 	position:relative;
-	left:45%;
-	right:45%;
-	bottom:50%;
+	margin-left: 45%;
+	margin-top:40px;
+	font-size: 20px;
 }
 
+.centrale img{
+	height:auto;
+	width:200px;
 strong
 {
   font-size:x-large;
