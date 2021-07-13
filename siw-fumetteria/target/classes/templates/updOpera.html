@@ -5,15 +5,15 @@
 </head>
 <body>
 	<nav>
-	<ul>
-	<li><strong>Admin</strong></li>
-	<li><a th:href="@{/default}">Home</a></li>
-	<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
-	</ul>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
 	</nav>
-	
-	<form class="centrale" th:action="@{/updOpera/{id} (id=*{id})}" method="POST"
-		th:object="${opera}">
+
+	<form class="centrale" th:action="@{/updOpera/{id} (id=*{id})}"
+		method="POST" th:object="${opera}">
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
@@ -25,6 +25,7 @@
 						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 				</div>
 			</div>
+			<br>
 			<div>
 				<span>Stato</span>
 				<div>
@@ -36,16 +37,20 @@
 				<span>Nazionalità</span>
 				<div>
 					<input type="text" th:field="*{nazionalita}" /> <span
-						th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+						th:if="${#fields.hasErrors('nazionalita')}"
+						th:errors="*{nazionalita}"></span>
 				</div>
 			</div>
+			<br>
 			<div>
 				<span>Sinossi</span>
 				<div>
-					<textarea th:field="*{sinossi}" ></textarea> <span
-						th:if="${#fields.hasErrors('sinossi')}" th:errors="*{sinossi}"></span>
+					<textarea th:field="*{sinossi}"></textarea>
+					<span th:if="${#fields.hasErrors('sinossi')}"
+						th:errors="*{sinossi}"></span>
 				</div>
 			</div>
+			<br>
 			<div>
 				<span>Target</span>
 				<div>
@@ -53,6 +58,7 @@
 						th:if="${#fields.hasErrors('target')}" th:errors="*{target}"></span>
 				</div>
 			</div>
+			<br>
 			<div>
 				<span>Immagine</span>
 				<div>
@@ -60,34 +66,40 @@
 						th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
 				</div>
 			</div>
+			<br>
 			<div>
 				<span>Struttura</span>
-				<div>
-					<input type="text" th:field="*{struttura}" /> <span
-						th:if="${#fields.hasErrors('struttura')}" th:errors="*{struttura}"></span>
-				</div>
+				<p>
+					<select th:field="*{struttura}">
+						<option value="0">Struttura</option>
+						<option th:value="comic" th:selected="comic" th:text="comic"></option>
+						<option th:value="manga" th:selected="manga" th:text="manga"></option>
+					</select>
+				</p>
 			</div>
 			<div>
 				<span>Autore</span>
-				<div >
-					<ul>
-						<li th:each="autore : ${autori}">
-						<input type="checkbox" th:text="|${autore.nome} ${autore.cognome}|" th:field="*{autore}" th:value="${autore.id}" />
-						</li>
-					</ul>
-				</div>
+				<p>
+					<select th:field="*{autore}">
+						<option value="0">Autore</option>
+						<option th:each="autore : ${autori}" th:value="${autore.id}"
+							th:selected="${autore.id eq lastselected}"
+							th:text="|${autore.nome} ${autore.cognome}|" />
+					</select>
+				</p>
 			</div>
 			<div>
 				<span>Genere</span>
 				<div>
 					<ul>
-						<li th:each="genere : ${generi}">
-						<input type="checkbox" th:text="${genere.tipologia}" th:field="*{genere}" th:value="${genere.id}" />
-						</li>
+						<li th:each="genere : ${generi}"><input type="checkbox"
+							th:text="${genere.tipologia}" th:field="*{genere}"
+							th:value="${genere.id}" /></li>
 					</ul>
 
 				</div>
 			</div>
+			<br>
 			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>

@@ -5,13 +5,13 @@
 </head>
 <body>
 	<nav>
-	<ul>
-	<li><strong>Admin</strong></li>
-	<li><a th:href="@{/default}">Home</a></li>
-	<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
-	</ul>
+		<ul>
+			<li><strong>Admin</strong></li>
+			<li><a th:href="@{/default}">Home</a></li>
+			<li class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+		</ul>
 	</nav>
-	
+
 	<form class="centrale" th:action="@{/inserisciOpera}" method="POST"
 		th:object="${opera}">
 		<div th:if="${#fields.hasGlobalErrors()}">
@@ -24,7 +24,8 @@
 					<input type="text" th:field="*{nome}" /> <span
 						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span>Stato</span>
 				<div>
@@ -36,60 +37,69 @@
 				<span>Nazionalità</span>
 				<div>
 					<input type="text" th:field="*{nazionalita}" /> <span
-						th:if="${#fields.hasErrors('nazionalita')}" th:errors="*{nazionalita}"></span>
+						th:if="${#fields.hasErrors('nazionalita')}"
+						th:errors="*{nazionalita}"></span>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span>Sinossi</span>
 				<div>
-					<textarea th:field="*{sinossi}" /> <span
-						th:if="${#fields.hasErrors('sinossi')}" th:errors="*{sinossi}"></span>
+					<textarea th:field="*{sinossi}"></textarea>
+					<span th:if="${#fields.hasErrors('sinossi')}"
+						th:errors="*{sinossi}"></span>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span>Target</span>
 				<div>
 					<input type="text" th:field="*{target}" /> <span
 						th:if="${#fields.hasErrors('target')}" th:errors="*{target}"></span>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span>Immagine</span>
 				<div>
 					<input type="text" th:field="*{immagine}" /> <span
 						th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span>Struttura</span>
 				<p>
-						<select th:field="*{struttura}">
-						<option th:value="comic" th:text="comic"/>
-						<option th:value="manga" th:text="manga"/>
-						</select>
+					<select th:field="*{struttura}">
+						<option value="0">Struttura</option>
+						<option th:value="comic" th:selected="comic" th:text="comic"></option>
+						<option th:value="manga" th:selected="manga" th:text="manga"></option>
+					</select>
 				</p>
 			</div>
 			<div>
 				<span>Autore</span>
 				<p>
-						<select th:field="*{autore}" >
-						<option th:each="autore : ${autori}" th:value="${autore.id}" th:text="|${autore.nome} ${autore.cognome}|" />
-						<span th:if="${#fields.hasErrors('autore.id')}" th:errors="*{autore.id}"></span>
-				</div>
-						</select>
+					<select th:field="*{autore}">
+						<option value="0">Autore</option>
+						<option th:each="autore : ${autori}" th:value="${autore.id}"
+							th:selected="${autore.id eq lastselected}"
+							th:text="|${autore.nome} ${autore.cognome}|" />
+					</select>
 				</p>
 			</div>
 			<div>
 				<span>Genere</span>
 				<div>
 					<ul>
-						<li th:each="genere : ${generi}">
-						<input type="checkbox" th:text="${genere.tipologia}" th:field="*{genere}" th:value="${genere.id}" />
-						</li>
+						<li th:each="genere : ${generi}"><input type="checkbox"
+							th:text="${genere.tipologia}" th:field="*{genere}"
+							th:value="${genere.id}" /></li>
 					</ul>
 
 				</div>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>

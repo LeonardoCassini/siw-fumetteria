@@ -15,11 +15,11 @@
 			<li th:object="${autori}" th:each="autori : ${autori}">
 				<div th:if="*{cognome}"th:text="*{nome}+' '+*{cognome}"></div>
 				<div th:unless="*{cognome}"th:text="*{nome}"></div>
-				<form  class="centrale" action="#" th:action="@{/cancAutore/{id} (id=*{id})}"  method="post">
+				<form  class="modifica" action="#" th:action="@{/cancAutore/{id} (id=*{id})}"  method="post">
 					<input type="hidden" value="Cancella"/>
                     <button type="submit"value="Cancella">Cancella</button>
 				</form>
-				<form  class="centrale" action="#" th:action="@{/updAutore/{id} (id=*{id})}"  method="get">
+				<form  class="modifica" action="#" th:action="@{/updAutore/{id} (id=*{id})}"  method="get">
 					<input type="hidden" value="modifica"/>
                     <button type="submit"value="modifica">Modifica</button>
 				</form>

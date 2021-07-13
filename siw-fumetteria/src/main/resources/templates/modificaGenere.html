@@ -14,11 +14,11 @@
 	<ul>
 		<li th:object="${generi}" th:each="generi : ${generi}">
 		<div th:text="*{tipologia}"></div>
-			<form class="centrale" action="#" th:action="@{/cancGenere/{id} (id=*{id})}" method="post">
+			<form class="modifica" action="#" th:action="@{/cancGenere/{id} (id=*{id})}" method="post">
 				<input type="hidden" value="Cancella" />
 				<button type="submit" value="Cancella">Cancella</button>
 			</form>
-			<form class="centrale" action="#" th:action="@{/updGenere/{id} (id=*{id})}" method="get">
+			<form class="modifica" action="#" th:action="@{/updGenere/{id} (id=*{id})}" method="get">
 				<input type="hidden" value="modifica" />
 				<button type="submit" value="modifica">Modifica</button>
 			</form>
