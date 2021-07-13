@@ -1,7 +1,6 @@
 package it.uniroma3.siw.spring.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,34 +9,17 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-//import org.springframework.web.bind.annotation.RestController;
-
-import it.uniroma3.siw.spring.controller.validator.CredenzialiValidator;
 import it.uniroma3.siw.spring.controller.validator.ModificaCredenzialiValidator;
-import it.uniroma3.siw.spring.controller.validator.ModificaUtenteValidator;
-import it.uniroma3.siw.spring.controller.validator.UtenteValidator;
 import it.uniroma3.siw.spring.model.Credenziali;
-import it.uniroma3.siw.spring.model.Utente;
 import it.uniroma3.siw.spring.service.CredenzialiService;
-import it.uniroma3.siw.spring.service.UtenteService;
 
 @Controller
 public class UtenteController 
 {
 	@Autowired
-	private UtenteService utenteService;
-	@Autowired
-	private CredenzialiValidator credenzialiValidator;
-	@Autowired
-	private UtenteValidator utenteValidator;
-	@Autowired
 	private CredenzialiService credenzialiService;
-	@Autowired
-	private ModificaUtenteValidator modificaUtenteValidator;
 	@Autowired
 	private ModificaCredenzialiValidator modificaCredenzialiValidator;
 	@Autowired

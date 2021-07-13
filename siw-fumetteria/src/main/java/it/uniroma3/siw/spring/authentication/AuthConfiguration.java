@@ -29,7 +29,7 @@ public class AuthConfiguration extends WebSecurityConfigurerAdapter
 			.authorizeRequests()
 			// chiunque può accedere alle seguenti pagine
 			.antMatchers(HttpMethod.GET, "/", "/homePage", "/autori", "/news","/generi","/opere","/opereAutore","/autori/{id}","/opera/{id}").permitAll()
-			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/filtraOpereGenere","/css/**","/images/**").permitAll()
+			.antMatchers(HttpMethod.GET, "/opereGenere","/generi/{id}","/volumi","/volume/{id}","/filtraAutori","/filtraOpere","/carrello","/css/**","/images/**").permitAll()
 			.antMatchers(HttpMethod.GET, "/registrazione", "/login","/cliente","/genereStruttura", "/default", "/cliente/{username}").permitAll()
 			.antMatchers(HttpMethod.GET, "/updCliente", "/updCliente/{id}", "/updCliente/{username}").permitAll()
 			.antMatchers(HttpMethod.POST, "/updCliente").permitAll()

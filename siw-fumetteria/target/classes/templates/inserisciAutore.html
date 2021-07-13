@@ -16,24 +16,23 @@
 		<div th:if="${#fields.hasGlobalErrors()}">
 			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p>
 		</div>
+
 		<div>
+			<span>Nome</span>
 			<div>
-				<span>Nome</span>
-				<div>
-					<input type="text" th:field="*{nome}" /> <span
-						th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-				</div>
-			</div><br>
+				<input type="text" th:field="*{nome}" required/> <span
+					th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+			</div>
+		</div>
+		<br>
+		<div>
+			<span>cognome</span>
 			<div>
-				<span>cognome</span>
-				<div>
-					<input type="text" th:field="*{cognome}" /> <span
-						th:if="${#fields.hasErrors('cognome')}" th:errors="*{cognome}"></span>
-				</div>
-			</div><br>
-			<div>
-				<span>Struttura</span>
-				<div>
+				<input type="text" th:field="*{cognome}" />
+			</div>
+		</div>
+		<br> <span>Struttura</span>
+		<div>
 			<div>
 				<select th:field="*{struttura}">
 					<option value="0">Struttura pagina</option>
@@ -42,7 +41,8 @@
 					<option th:value="67" th:selected="comic" th:text="comic">
 					</option>
 				</select>
-			</div><br>
+			</div>
+			<br>
 			<div>
 				<span><button type="submit">Invio</button></span>
 			</div>

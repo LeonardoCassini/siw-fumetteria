@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="headerfiles(title)">
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link  th:href="@{/css/supaStyle.css}" rel="stylesheet">
-	<title th:text="${title}"></title>
+<meta charset="UTF-8" name="viewport"
+	content="width=device-width, initial-scale=1">
+<link th:href="@{/css/supaStyle.css}" rel="stylesheet">
+<title th:text="${title}"></title>
 </head>
 <body>
 	<header th:fragment="intestazione">
@@ -18,24 +18,26 @@
 			<li><a th:href="@{/autori}">Autori</a></li>
 			<li><a th:href="@{/opere}">Opere</a></li>
 			<li><a th:href="@{/news}">News</a></li>
-			<li th:if="${#authorization.expression('isAuthenticated()')}"><a th:href="@{/carrello}"> 
-			<img class="carrello" src="/images/carrello.png" alt="carrello">
+			<li th:if="${#authorization.expression('isAuthenticated()')}"><a
+				th:href="@{/carrello}"> <img class="carrello"
+					src="/images/carrello.png" alt="carrello">
 			</a></li>
-			<li th:if="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:href="@{/logout}">Logout</a></li>
-			<li  th:if="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:text="Profilo" th:href="@{'/cliente' + '/' +${#authentication.name}}">Cliente</a></li>
-			<li  th:unless="${#authorization.expression('isAuthenticated()')}" class="posDestra"><a th:href="@{/login}">Login</a></li>
-			
-			<!--  <li class="posDestra"><input type="search" name="ricerca"
-				placeholder="Cerca..." /> <input type="submit" value="cerca" /></li>-->
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				class="posDestra"><a th:href="@{/logout}">Logout</a></li>
+			<li th:if="${#authorization.expression('isAuthenticated()')}"
+				class="posDestra"><a th:text="Profilo"
+				th:href="@{'/cliente' + '/' +${#authentication.name}}">Cliente</a></li>
+			<li th:unless="${#authorization.expression('isAuthenticated()')}"
+				class="posDestra"><a th:href="@{/login}">Login</a></li>
 		</ul>
 	</nav>
 	<footer th:fragment="fondo">
-	<strong>Contatti</strong>
-	<div>email: comicspace@gmail.com</div>
-	<div>telefono: 0611223344</div>
-	<strong>Metodi di pagamento</strong>
-	<div>Carte di credito</div>
-	<img class="cestino" src="/images/carte.png" alt="carte">
+		<strong>Contatti</strong>
+		<div>email: comicspace@gmail.com</div>
+		<div>telefono: 0611223344</div>
+		<strong>Metodi di pagamento</strong>
+		<div>Carte di credito</div>
+		<img class="cestino" src="/images/carte.png" alt="carte">
 	</footer>
 </body>
 </html>
