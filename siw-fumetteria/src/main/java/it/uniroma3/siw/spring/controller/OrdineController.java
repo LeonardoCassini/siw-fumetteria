@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,9 +34,17 @@ public class OrdineController
 			{
 				carrelloTrovato=true;
 				ordine.getVolumi().remove(this.volumeService.getVolume(isbn));
-				this.ordineService.saveOrdine(ordine);
+				if(ordine.getVolumi().size()>0)
+				{
+					this.ordineService.saveOrdine(ordine);
+				}
+				else
+				{
+					this.ordineService.cancella(ordine.getId());
+				}
 			}
 		}
+		
 		return"redirect:/carrello";
 	}
 	
@@ -61,5 +70,21 @@ public class OrdineController
 		}
 		
 		return"redirect:/homePage";
+	}
+	
+	@RequestMapping(value="/ordini",method=RequestMethod.GET)
+	public String showOrdini(Model model)
+	{
+		List<Ordine> ordiniCliente=new ArrayList<Ordine>();
+		for(Ordine ordine : this.ordineService.OrdiniUtente())
+		{
+			if(!ordine.getStato().equals("provvisorio"))
+			{
+				ordiniCliente.add(ordine);
+			}
+		}
+		
+		model.addAttribute("ordini", ordiniCliente);
+		return"/ordini";
 	}
 }

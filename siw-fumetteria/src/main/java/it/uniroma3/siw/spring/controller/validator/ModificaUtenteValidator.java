@@ -28,7 +28,7 @@ public class ModificaUtenteValidator implements Validator{
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cognome", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "dataNascita", "required");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "indirizzo", "required");
-		//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "required");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password","required");
 		
 		if(!errors.hasErrors()) 
 		{

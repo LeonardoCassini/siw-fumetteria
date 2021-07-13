@@ -8,7 +8,7 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	
-	<form class="centrale" th:action="@{/updCliente/{id}(id=${credenziali.id})}" method="POST" th:object="${credenziali}" >
+	<form class="centrale" th:action="@{/updCliente/{id}(id=${credenziali.id})}" method="POST" th:object="${credenziali}">
 		
 		
 			
@@ -33,41 +33,39 @@
 					<input type="text" th:field="*{utente.cognome}" /> <span
 						th:if="${#fields.hasErrors('utente.cognome')}" th:errors="*{utente.cognome}"></span>
 				</div>
-			<br>
+			</div><br>
 			<div>
 				<span>Data di nascita</span>
 				<div>
 					<input type="date" th:field="*{utente.dataNascita}" /> <span
 						th:if="${#fields.hasErrors('utente.dataNascita')}" th:errors="*{utente.dataNascita}"></span>
 				</div>
-			<br>
+			</div><br>
 			<div>
 				<span>Indirizzo</span>
 				<div>
 					<input type="text" th:field="*{utente.indirizzo}" /> <span
 						th:if="${#fields.hasErrors('utente.indirizzo')}" th:errors="*{utente.indirizzo}"></span>
 				</div>
-			<br>
+			</div><br>
 			<div>
 				<span>Pagamento</span>
 				<div>
-					<input type="text" th:field="*{utente.pagamento}" name="pagamento"/> <span
+					<input type="text" th:field="*{utente.pagamento}" /> <span
 						th:if="${#fields.hasErrors('utente.pagamento')}" th:errors="*{utente.pagamento}"></span>
 				</div>
-			<br>
+			</div><br>
 			<div>
 				<span>Password</span>
 				<div>
-					<input type="text" th:field="*{utente.password}"required="true"><span
+					<input type="text" th:field="*{utente.password}"> <span
 						th:if="${#fields.hasErrors('utente.password')}" th:errors="*{utente.password}"></span>
 				</div>
 			</div>
 			<br>
 			<div>
 				<span><button type="submit">Invio</button></span>
-			</div>
-			
+			</div>	
 	</form>
-	
 </body>
 </html>
