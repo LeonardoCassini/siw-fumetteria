@@ -45,6 +45,13 @@
             <td th:if="${#fields.hasErrors('utente.indirizzo')}"
                 th:errors="${utente.indirizzo}" th:style="'color:red'"></td>
         </tr>
+        <tr>
+            <td>Numero della carta</td>
+            <td><input type="text"  required
+                       th:field="${utente.pagamento}"/></td>
+            <td th:if="${#fields.hasErrors('utente.pagamento')}"
+                th:errors="${utente.pagamento}" th:style="'color:red'"></td>
+        </tr>
          <tr>
             <td>Data di nascita</td>
             <td><input type="date" required

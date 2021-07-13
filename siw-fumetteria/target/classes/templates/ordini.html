@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/strutturaBase.html :: headerfiles(title=operaGenere)">
+</head>
+<body>
+<header th:replace="fragments/strutturaBase.html :: intestazione"></header>
+	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
+	</nav>
+	<ul th:object="${ordini}">
+	<li th:each="ordine : ${ordini}">
+	<div th:text="'Data di creazione: '+${ordine.dataCreazione}+'  '+'Stato: '+${ordine.stato}+' '+'Importo totale: '+${ordine.totale}+'&#8364'"></div>
+	<div th:each="volume:${ordine.volumi}" th:text="${volume.titolo}+' '+'Prezzo: '+${volume.prezzo}+'&#8364'"></div>
+	</li>
+	</ul>
+
+</body>
+</html>

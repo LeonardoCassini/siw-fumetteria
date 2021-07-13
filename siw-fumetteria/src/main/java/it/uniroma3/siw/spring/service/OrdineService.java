@@ -79,4 +79,9 @@ public class OrdineService
 		}
 		return totale;
 	}
+	
+	public void cancella(Long id)
+	{
+		this.ordineRepository.deleteById(id);
+	}
 }

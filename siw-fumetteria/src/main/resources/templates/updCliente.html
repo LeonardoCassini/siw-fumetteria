@@ -17,19 +17,16 @@
 				
 				<input type="hidden" th:field="*{utente.id}" readonly="readonly"/>
 				
-				<input type="hidden" th:field="*{password}" value="*{utente.password}"readonly="readonly"/>
+				<input type="hidden" th:field="*{password}" readonly="readonly"/>
+			
+				<input type="hidden" th:field="*{utente.email}" readonly="readonly"/>
 				
-			<span>Email</span>
-			<div>
-				<input type="text" th:field="*{utente.email}" readonly="readonly"/>
-				<span th:if="${#fields.hasErrors('utente.email')}" th:errors="*{utente.email}"></span>
-			</div><br>
 				<span>Nome</span>
 				<div>
 					<input type="text" th:field="*{utente.nome}" /> <span
 						th:if="${#fields.hasErrors('utente.nome')}" th:errors="*{utente.nome}"></span>
 				</div>
-			</div><br>
+			<br>
 			<div>
 				<span>Cognome</span>
 				<div>
@@ -61,16 +58,14 @@
 			<div>
 				<span>Password</span>
 				<div>
-					<input type="password" th:field="*{utente.password}" > <span
+					<input type="text" th:field="*{utente.password}"> <span
 						th:if="${#fields.hasErrors('utente.password')}" th:errors="*{utente.password}"></span>
 				</div>
 			</div>
 			<br>
 			<div>
 				<span><button type="submit">Invio</button></span>
-			</div>
-			
+			</div>	
 	</form>
-</div>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head
-	th:replace="fragments/strutturaBase.html :: headerfiles(title)">
+	th:replace="fragments/strutturaBase.html :: headerfiles(home)">
 </head>
 <body>
 	<header th:replace="fragments/strutturaBase.html :: intestazione">
@@ -9,8 +9,11 @@
 	<nav th:replace="fragments/strutturaBase.html :: barraNavigazione">
 	</nav>
 	<div>
-		<span>Super fumettissimi in offerta solo ora</span> SOLO ORA SE
-		COMPRI UNA BISTECCA HAI IN OMAGGIO IL FUMETTO DEL DENTISTA
+	<p>Per usurfruire del nostro sito bisogna rispettare queste regole</p>
+		<strong>Regole</strong>
+		<p>1 Per aggiungere una copia di un volume nel carrello bisogna essere registrati e aver effettuato l'accesso</p>
+		<p>2 Per visualizzare il carrello bisogna essere registrati e aver effettuato l'accesso</p>
+		<p>3 Si puo' aggingere al carrello SOLO una copia per ogni volume</p>
 	</div>
 	<footer th:replace="fragments/strutturaBase.html :: fondo"></footer>
 </body>

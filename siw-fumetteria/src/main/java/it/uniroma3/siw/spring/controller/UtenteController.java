@@ -70,7 +70,8 @@ public class UtenteController
 	{
 		
 		this.modificaCredenzialiValidator.validate(credenziali, credenzialiBr);
-		if(!credenzialiBr.hasErrors()) {
+		if(!credenzialiBr.hasErrors()) 
+		{
 			credenziali.setPassword(credenziali.getUtente().getPassword());
 			this.credenzialiService.saveCredentials(credenziali);
 			

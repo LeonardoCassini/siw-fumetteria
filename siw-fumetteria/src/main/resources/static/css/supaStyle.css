@@ -79,7 +79,6 @@ ul
 
 section
 {
-  background:black;
   height:auto;
 }
 
@@ -98,10 +97,14 @@ footer
 
 .centrale
 {
-	position:relative;
-	left:45%;
-	right:45%;
-	bottom:50%;
+    position:relative;
+    margin-left: 45%;
+    margin-top:40px;
+}
+
+.centrale img{
+    height:auto;
+    width:200px;
 }
 
 strong

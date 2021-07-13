@@ -11,6 +11,7 @@ public class UtenteValidator implements Validator{
 
 	final Integer MAX_NAME_LENGTH = 100;
 	final Integer MIN_NAME_LENGTH = 2;
+	final Integer LENGTH_CARTA=16;
 	
 
 	@Override
@@ -24,8 +25,8 @@ public class UtenteValidator implements Validator{
 		Utente utente =(Utente) o;
 		String nome = utente.getNome().trim();
 		String cognome = utente.getCognome().trim();
-		String email = utente.getEmail();
 		String indirizzo = utente.getIndirizzo().trim();
+		String pagamento=utente.getPagamento().trim();
 
 		if (nome.isEmpty())
 			errors.rejectValue("nome", "required");
@@ -37,13 +38,15 @@ public class UtenteValidator implements Validator{
 		else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
 			errors.rejectValue("cognome", "size");
 		
-		
-		
 		if (indirizzo.isEmpty())
 			errors.rejectValue("indirizzo", "required");
 		else if (cognome.length() < MIN_NAME_LENGTH)
 			errors.rejectValue("indirizzo", "size");
-
+		
+		if (pagamento.isEmpty())
+			errors.rejectValue("email", "required");
+		else if (pagamento.length() < LENGTH_CARTA || pagamento.length() > LENGTH_CARTA)
+			errors.rejectValue("pagamento", "size");
 	}
 
 }
